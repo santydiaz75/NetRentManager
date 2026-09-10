@@ -159,7 +159,7 @@ IEntityTypeConfiguration<T>
 Las configuraciones DEBEN vivir en:
 
 ```text
-app/backend/src/RealtorApi/Infrastructure/Persistence/Configurations/
+app/backend/src/NetRentManagerApi/Infrastructure/Persistence/Configurations/
 ```
 
 La convención obligatoria de nombres es:
@@ -273,8 +273,8 @@ Ejemplo:
 
 ```powershell
 dotnet ef migrations add AddPropertyManagementEntities `
-  --project app/backend/src/RealtorApi `
-  --startup-project app/backend/src/RealtorApi `
+  --project app/backend/src/NetRentManagerApi `
+  --startup-project app/backend/src/NetRentManagerApi `
   --output-dir Infrastructure/Persistence/Migrations
 ```
 
@@ -497,7 +497,7 @@ Está prohibido duplicar la lógica de seed dentro de los delegados.
 El seeder DEBE vivir en:
 
 ```text
-app/backend/src/RealtorApi/Infrastructure/Persistence/DatabaseSeeder.cs
+app/backend/src/NetRentManagerApi/Infrastructure/Persistence/DatabaseSeeder.cs
 ```
 
 Debe exponer:

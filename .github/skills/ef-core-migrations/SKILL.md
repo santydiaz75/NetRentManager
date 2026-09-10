@@ -67,8 +67,8 @@ Ejecutar desde la raíz del repositorio o desde la ruta definida por el proyecto
 
 ```powershell
 dotnet ef migrations add AddPropertyManagementEntities `
-  --project app/backend/src/RealtorApi `
-  --startup-project app/backend/src/RealtorApi `
+  --project app/backend/src/NetRentManagerApi `
+  --startup-project app/backend/src/NetRentManagerApi `
   --output-dir Infrastructure/Persistence/Migrations
 ```
 

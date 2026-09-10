@@ -1,10 +1,10 @@
 ---
-name: 001-realtor-solution-foundation
-description: Crea la especificacion base de la solucion Realtor, validando global.json como prerequisito obligatorio
+name: 001-NetRentManager-solution-foundation
+description: Crea la especificacion base de la solucion NetRentManager, validando global.json como prerequisito obligatorio
 agent: speckit.specify
 ---
 
-# Crear base de la solucion Realtor
+# Crear base de la solucion NetRentManager
 Crea la especificacion para la iniciativa 001-solution-foundation
 
 ## Instruction principal
@@ -24,21 +24,21 @@ Si global.json no existe:
 ERROR: No se encontró global.json en la raíz del repositorio. Debes crear primero ese archivo para determinar la versión de .NET que usarán los proyectos .NET futuros de la app.
 
 ## Objetivo
-Definir la estructura inicial de la solucion Realtor sin implementar logica de negocio ni features.
+Definir la estructura inicial de la solucion NetRentManager sin implementar logica de negocio ni features.
 
 ## Tipo de iniciativa
 Foundation
 
 ## Requisitos de la iniciativa
 
-- Crear la solución principal en app/Realtor.sln.
-- Crear el proyecto backend en app/backend/src/RealtorApi/.
+- Crear la solución principal en app/NetRentManager.sln.
+- Crear el proyecto backend en app/backend/src/NetRentManagerApi/.
 - El backend debe usar ASP.NET Core Minimal APIs.
 - No se permiten controllers.
-- Crear el proyecto de tests backend en app/backend/tests/RealtorApiTests/.
-- Crear el proyecto frontend en app/frontend/src/RealtorWeb/.
+- Crear el proyecto de tests backend en app/backend/tests/NetRentManagerApiTests/.
+- Crear el proyecto frontend en app/frontend/src/NetRentManagerWeb/.
 - El frontend debe usar Blazor Web App con Razor Components.
-- Crear el proyecto de tests frontend en app/frontend/test/RealtorWeb/.
+- Crear el proyecto de tests frontend en app/frontend/test/NetRentManagerWeb/.
 - Configurar Program.cs únicamente con configuración base:
   - servicios
   - middleware

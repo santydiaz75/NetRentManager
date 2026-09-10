@@ -93,13 +93,13 @@ Testcontainers (solo si está aprobada)
 Ubicación sugerida:
 
 ```text
-app/backend/tests/RealtorApi.Tests/
+app/backend/tests/NetRentManagerApi.Tests/
 ```
 
 Organizar por feature y caso de uso:
 
 ```text
-app/backend/tests/RealtorApi.Tests/
+app/backend/tests/NetRentManagerApi.Tests/
   Features/
     Properties/
       CreateProperty/
@@ -107,7 +107,7 @@ app/backend/tests/RealtorApi.Tests/
         CreatePropertyEndpointTests.cs
   Infrastructure/
     Testing/
-      RealtorApiFactory.cs
+      NetRentManagerApiFactory.cs
       PostgreSqlContainerFixture.cs
       TestDataFactory.cs
 ```
@@ -180,7 +180,7 @@ dotnet test
 ```
 
 ```powershell
-dotnet test app/backend/tests/RealtorApi.Tests
+dotnet test app/backend/tests/NetRentManagerApi.Tests
 ```
 
 Una tarea de testing no se considera completada si no se ejecutaron y validaron las pruebas nuevas.

@@ -1,4 +1,4 @@
-# Specification Quality Checklist: Fundación de la Solución Realtor
+# Specification Quality Checklist: Fundación de la Solución NetRentManager
 
 **Purpose**: Validar completitud y calidad de la especificación antes de pasar a planificación.
 **Created**: 2026-07-07

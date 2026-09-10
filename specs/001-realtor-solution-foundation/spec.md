@@ -1,18 +1,18 @@
-# Especificación de la Funcionalidad: Fundación de la Solución Realtor
+# Especificación de la Funcionalidad: Fundación de la Solución NetRentManager
 
-**Rama de la funcionalidad**: `001-realtor-solution-foundation`
+**Rama de la funcionalidad**: `001-NetRentManager-solution-foundation`
 
 **Creado**: 2026-07-07
 
 **Estado**: Borrador
 
-**Entrada**: Descripción de usuario: "Crear base de la solución Realtor para la iniciativa 001, sin lógica de negocio ni features"
+**Entrada**: Descripción de usuario: "Crear base de la solución NetRentManager para la iniciativa 001, sin lógica de negocio ni features"
 
 ## Escenarios de Usuario y Pruebas *(obligatorio)*
 
 ### Historia de Usuario 1 - Crear la base única de solución (Prioridad: P1)
 
-Como equipo de desarrollo, necesitamos una solución única con backend y frontend iniciales para arrancar el producto Realtor con una estructura coherente desde el día cero.
+Como equipo de desarrollo, necesitamos una solución única con backend y frontend iniciales para arrancar el producto NetRentManager con una estructura coherente desde el día cero.
 
 **Por qué esta prioridad**: Sin una base de solución común no existe un punto de partida estable para planificar e implementar iniciativas posteriores.
 
@@ -20,7 +20,7 @@ Como equipo de desarrollo, necesitamos una solución única con backend y fronte
 
 **Escenarios de aceptación**:
 
-1. **Dado** un repositorio con `global.json` en la raíz, **cuando** se prepara la iniciativa foundation, **entonces** existe una solución principal en `app/Realtor.sln`.
+1. **Dado** un repositorio con `global.json` en la raíz, **cuando** se prepara la iniciativa foundation, **entonces** existe una solución principal en `app/NetRentManager.sln`.
 2. **Dado** la solución principal creada, **cuando** se revisa su composición, **entonces** incluye un proyecto de backend, un proyecto de frontend y sus respectivos proyectos de pruebas en las rutas esperadas.
 
 ---
@@ -61,11 +61,11 @@ Como equipo de producto y arquitectura, necesitamos que la base fundacional qued
 
 ### Requisitos funcionales
 
-- **RF-001**: El sistema DEBE disponer de una solución principal en `app/Realtor.sln` como punto único de composición.
-- **RF-002**: El sistema DEBE disponer de un proyecto de backend en `app/backend/src/RealtorApi/`.
-- **RF-003**: El sistema DEBE disponer de un proyecto de pruebas de backend en `app/backend/tests/RealtorApiTests/`.
-- **RF-004**: El sistema DEBE disponer de un proyecto de frontend en `app/frontend/src/RealtorWeb/`.
-- **RF-005**: El sistema DEBE disponer de un proyecto de pruebas de frontend en `app/frontend/test/RealtorWeb/`.
+- **RF-001**: El sistema DEBE disponer de una solución principal en `app/NetRentManager.sln` como punto único de composición.
+- **RF-002**: El sistema DEBE disponer de un proyecto de backend en `app/backend/src/NetRentManagerApi/`.
+- **RF-003**: El sistema DEBE disponer de un proyecto de pruebas de backend en `app/backend/tests/NetRentManagerApiTests/`.
+- **RF-004**: El sistema DEBE disponer de un proyecto de frontend en `app/frontend/src/NetRentManagerWeb/`.
+- **RF-005**: El sistema DEBE disponer de un proyecto de pruebas de frontend en `app/frontend/test/NetRentManagerWeb/`.
 - **RF-006**: La configuración inicial del arranque del backend DEBE limitarse a servicios, middleware y mapeo inicial de endpoints.
 - **RF-007**: La iniciativa foundation NO DEBE introducir lógica de negocio.
 - **RF-008**: La iniciativa foundation NO DEBE introducir features funcionales de producto.
@@ -74,7 +74,7 @@ Como equipo de producto y arquitectura, necesitamos que la base fundacional qued
 
 ### Entidades clave
 
-- **Solución Realtor**: Contenedor principal que referencia proyectos de backend, frontend y pruebas.
+- **Solución NetRentManager**: Contenedor principal que referencia proyectos de backend, frontend y pruebas.
 - **Proyecto Base**: Unidad de aplicación inicial (backend o frontend) sin funcionalidad de negocio.
 - **Proyecto de Pruebas Base**: Unidad de pruebas preparada para validar evolución futura de cada capa.
 - **Baseline de Versión**: Restricción de versión de plataforma declarada en `global.json` y aplicada a iniciativas .NET futuras.

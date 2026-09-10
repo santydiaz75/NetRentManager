@@ -24,7 +24,7 @@ Sync Impact Report
 	- Ninguno
 -->
 
-# Constitución del Proyecto Realtor
+# Constitución del Proyecto NetRentManager
 
 ## Principios Fundamentales
 

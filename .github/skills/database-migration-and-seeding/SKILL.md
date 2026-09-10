@@ -27,13 +27,13 @@ EF Core dispara el seed automáticamente al final.
 Crear la extensión en:
 
 ```text
-app/backend/src/RealtorApi/Infrastructure/Persistence/MigrationExtensions.cs
+app/backend/src/NetRentManagerApi/Infrastructure/Persistence/MigrationExtensions.cs
 ```
 
 Crear el seeder en:
 
 ```text
-app/backend/src/RealtorApi/Infrastructure/Persistence/DatabaseSeeder.cs
+app/backend/src/NetRentManagerApi/Infrastructure/Persistence/DatabaseSeeder.cs
 ```
 
 El seeder centraliza la lógica de carga de datos y es invocado únicamente desde los delegados `UseSeeding()` y `UseAsyncSeeding()` configurados en el registro del `DbContext`.
@@ -44,9 +44,9 @@ El seeder DEBE exponer una versión síncrona y una asíncrona con la misma lóg
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using RealtorApi.Domain.AuditLogs;
+using NetRentManagerApi.Domain.AuditLogs;
 
-namespace RealtorApi.Infrastructure.Persistence;
+namespace NetRentManagerApi.Infrastructure.Persistence;
 
 public static class DatabaseSeeder
 {
@@ -109,9 +109,9 @@ La extensión solo aplica migraciones. El seed se dispara automáticamente al fi
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using RealtorApi.Infrastructure.Persistence;
+using NetRentManagerApi.Infrastructure.Persistence;
 
-namespace RealtorApi.Infrastructure.Persistence;
+namespace NetRentManagerApi.Infrastructure.Persistence;
 
 public static class MigrationExtensions
 {

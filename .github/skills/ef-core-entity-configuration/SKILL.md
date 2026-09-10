@@ -23,7 +23,7 @@ Está prohibido configurar entidades inline dentro de `OnModelCreating`.
 Las configuraciones DEBEN vivir en:
 
 ```text
-app/backend/src/RealtorApi/Infrastructure/Persistence/Configurations/
+app/backend/src/NetRentManagerApi/Infrastructure/Persistence/Configurations/
 ```
 
 ## Convención de nombres
@@ -80,9 +80,9 @@ Cuando una spec agregue una entidad persistente, seguir este orden:
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RealtorApi.Domain.Properties;
+using NetRentManagerApi.Domain.Properties;
 
-namespace RealtorApi.Infrastructure.Persistence.Configurations;
+namespace NetRentManagerApi.Infrastructure.Persistence.Configurations;
 
 public sealed class PropertyConfiguration : IEntityTypeConfiguration<Property>
 {
