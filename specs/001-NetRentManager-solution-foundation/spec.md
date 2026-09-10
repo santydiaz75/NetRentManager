@@ -2,11 +2,11 @@
 
 **Rama de la funcionalidad**: `001-NetRentManager-solution-foundation`
 
-**Creado**: 2026-07-07
+**Creado**: 2026-09-10
 
 **Estado**: Borrador
 
-**Entrada**: Descripción de usuario: "Crear base de la solución NetRentManager para la iniciativa 001, sin lógica de negocio ni features"
+**Entrada**: Descripción de usuario: "001-NetRentManager-solution-foundation"
 
 ## Escenarios de Usuario y Pruebas *(obligatorio)*
 
