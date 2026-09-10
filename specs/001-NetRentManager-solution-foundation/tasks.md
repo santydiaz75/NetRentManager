@@ -15,22 +15,22 @@ description: "Tareas ejecutables para la fundación de la solución NetRentManag
 
 **Objetivo**: Confirmar el baseline y crear la estructura física sin sobrescribir trabajo existente.
 
-- [ ] T001 Confirmar en `global.json` que el SDK requerido es `10.0.400` y registrar que el archivo no debe modificarse.
-- [ ] T002 Inspeccionar `app/`, `app/backend/` y `app/frontend/` antes de crear archivos; detenerse ante conflictos con proyectos existentes en las rutas canónicas.
-- [ ] T003 Crear la solución única `app/NetRentManager.sln` usando el SDK seleccionado por `global.json`.
-- [ ] T004 [P] Crear el proyecto backend Minimal API en `app/backend/src/NetRentManagerApi/`.
-- [ ] T005 [P] Crear el proyecto frontend Blazor Web App con Razor Components en `app/frontend/src/NetRentManagerWeb/`.
-- [ ] T006 [P] Crear el proyecto de pruebas unitarias del backend en `app/backend/tests/NetRentManagerApiTests/`.
-- [ ] T007 [P] Crear el proyecto de pruebas unitarias del frontend en `app/frontend/test/NetRentManagerWeb/`.
+- [X] T001 Confirmar en `global.json` que el SDK requerido es `10.0.400` y registrar que el archivo no debe modificarse.
+- [X] T002 Inspeccionar `app/`, `app/backend/` y `app/frontend/` antes de crear archivos; detenerse ante conflictos con proyectos existentes en las rutas canónicas.
+- [X] T003 Crear la solución única `app/NetRentManager.sln` usando el SDK seleccionado por `global.json`.
+- [X] T004 [P] Crear el proyecto backend Minimal API en `app/backend/src/NetRentManagerApi/`.
+- [X] T005 [P] Crear el proyecto frontend Blazor Web App con Razor Components en `app/frontend/src/NetRentManagerWeb/`.
+- [X] T006 [P] Crear el proyecto de pruebas unitarias del backend en `app/backend/tests/NetRentManagerApiTests/`.
+- [X] T007 [P] Crear el proyecto de pruebas unitarias del frontend en `app/frontend/test/NetRentManagerWeb/`.
 
 ## Fase 2: Fundamentos bloqueantes
 
 **Objetivo**: Integrar los proyectos y dejar una base compilable antes de completar las historias de usuario.
 
-- [ ] T008 Agregar los cuatro proyectos a `app/NetRentManager.sln` y verificar que las rutas relativas sean las canónicas de RF-002..RF-005.
-- [ ] T009 [P] Configurar `app/backend/tests/NetRentManagerApiTests/NetRentManagerApiTests.csproj` para referenciar únicamente el backend base, sin dependencias de base de datos ni servicios externos.
-- [ ] T010 [P] Configurar `app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj` para referenciar únicamente el frontend base, sin dependencias de funcionalidades de producto.
-- [ ] T011 Ejecutar `dotnet build app/NetRentManager.sln` y resolver únicamente errores introducidos por la creación o composición de la fundación.
+- [X] T008 Agregar los cuatro proyectos a `app/NetRentManager.sln` y verificar que las rutas relativas sean las canónicas de RF-002..RF-005.
+- [X] T009 [P] Configurar `app/backend/tests/NetRentManagerApiTests/NetRentManagerApiTests.csproj` para referenciar únicamente el backend base, sin dependencias de base de datos ni servicios externos.
+- [X] T010 [P] Configurar `app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj` para referenciar únicamente el frontend base, sin dependencias de funcionalidades de producto.
+- [X] T011 Ejecutar `dotnet build app/NetRentManager.sln` y resolver únicamente errores introducidos por la creación o composición de la fundación.
 
 **Punto de control**: La solución contiene cuatro proyectos y compila sin introducir persistencia ni lógica de negocio.
 
@@ -40,11 +40,11 @@ description: "Tareas ejecutables para la fundación de la solución NetRentManag
 
 **Prueba independiente**: Verificar que `app/NetRentManager.sln` existe, contiene exactamente los cuatro proyectos canónicos y que `dotnet build app/NetRentManager.sln` finaliza sin errores.
 
-- [ ] T012 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto backend `app/backend/src/NetRentManagerApi/NetRentManagerApi.csproj`.
-- [ ] T013 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto de pruebas backend `app/backend/tests/NetRentManagerApiTests/NetRentManagerApiTests.csproj`.
-- [ ] T014 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto frontend `app/frontend/src/NetRentManagerWeb/NetRentManagerWeb.csproj`.
-- [ ] T015 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto de pruebas frontend `app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj`.
-- [ ] T016 [US1] Ejecutar `dotnet test app/NetRentManager.sln` y confirmar que los proyectos de pruebas base finalizan correctamente.
+- [X] T012 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto backend `app/backend/src/NetRentManagerApi/NetRentManagerApi.csproj`.
+- [X] T013 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto de pruebas backend `app/backend/tests/NetRentManagerApiTests/NetRentManagerApiTests.csproj`.
+- [X] T014 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto frontend `app/frontend/src/NetRentManagerWeb/NetRentManagerWeb.csproj`.
+- [X] T015 [US1] Verificar en `app/NetRentManager.sln` la referencia al proyecto de pruebas frontend `app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj`.
+- [X] T016 [US1] Ejecutar `dotnet test app/NetRentManager.sln` y confirmar que los proyectos de pruebas base finalizan correctamente.
 
 **Punto de control**: US1 es entregable por sí sola y cumple RF-001..RF-005 y CE-001..CE-002.
 
@@ -54,11 +54,11 @@ description: "Tareas ejecutables para la fundación de la solución NetRentManag
 
 **Prueba independiente**: Revisar los archivos de arranque de backend y frontend y comprobar que no contienen lógica de negocio, entidades, features ni endpoints de producto.
 
-- [ ] T017 [US2] Revisar `app/backend/src/NetRentManagerApi/Program.cs` y conservar únicamente configuración base de servicios, middleware y mapeo inicial de endpoints.
-- [ ] T018 [US2] Revisar `app/frontend/src/NetRentManagerWeb/Program.cs` y conservar únicamente la configuración base de la Blazor Web App.
-- [ ] T019 [US2] Confirmar que `app/backend/src/NetRentManagerApi/` no contiene controllers, entidades de dominio, migraciones, seeds ni slices de negocio.
-- [ ] T020 [US2] Confirmar que `app/frontend/src/NetRentManagerWeb/` no contiene páginas, componentes o servicios de funcionalidades de producto.
-- [ ] T021 [US2] Ejecutar `dotnet build app/NetRentManager.sln` después de la revisión de arranque y documentar cualquier error en el alcance de esta iniciativa.
+- [X] T017 [US2] Revisar `app/backend/src/NetRentManagerApi/Program.cs` y conservar únicamente configuración base de servicios, middleware y mapeo inicial de endpoints.
+- [X] T018 [US2] Revisar `app/frontend/src/NetRentManagerWeb/Program.cs` y conservar únicamente la configuración base de la Blazor Web App.
+- [X] T019 [US2] Confirmar que `app/backend/src/NetRentManagerApi/` no contiene controllers, entidades de dominio, migraciones, seeds ni slices de negocio.
+- [X] T020 [US2] Confirmar que `app/frontend/src/NetRentManagerWeb/` no contiene páginas, componentes o servicios de funcionalidades de producto.
+- [X] T021 [US2] Ejecutar `dotnet build app/NetRentManager.sln` después de la revisión de arranque y documentar cualquier error en el alcance de esta iniciativa.
 
 **Punto de control**: US2 cumple RF-006..RF-009 y CE-003 sin ampliar el alcance fundacional.
 
@@ -68,10 +68,10 @@ description: "Tareas ejecutables para la fundación de la solución NetRentManag
 
 **Prueba independiente**: Repetir la validación estructural y comprobar que no se creó una segunda solución ni se modificó `global.json`.
 
-- [ ] T022 [US3] Comparar la estructura real de `app/` con la estructura documentada en `specs/001-NetRentManager-solution-foundation/plan.md` y corregir únicamente divergencias de la fundación.
-- [ ] T023 [US3] Verificar que no existe una segunda solución `.sln` dentro de `app/` y que `app/NetRentManager.sln` es el único punto de composición.
-- [ ] T024 [US3] Verificar que `global.json` conserva exactamente el SDK `10.0.400` y que ningún proyecto introduce una versión de plataforma contradictoria.
-- [ ] T025 [US3] Ejecutar las verificaciones de `specs/001-NetRentManager-solution-foundation/quickstart.md` y registrar los resultados de estructura, compilación y pruebas.
+- [X] T022 [US3] Comparar la estructura real de `app/` con la estructura documentada en `specs/001-NetRentManager-solution-foundation/plan.md` y corregir únicamente divergencias de la fundación.
+- [X] T023 [US3] Verificar que no existe una segunda solución `.sln` dentro de `app/` y que `app/NetRentManager.sln` es el único punto de composición.
+- [X] T024 [US3] Verificar que `global.json` conserva exactamente el SDK `10.0.400` y que ningún proyecto introduce una versión de plataforma contradictoria.
+- [X] T025 [US3] Ejecutar las verificaciones de `specs/001-NetRentManager-solution-foundation/quickstart.md` y registrar los resultados de estructura, compilación y pruebas.
 
 **Punto de control**: US3 cumple RF-010 y CE-004 y deja la solución preparada para la siguiente spec.
 
@@ -79,10 +79,10 @@ description: "Tareas ejecutables para la fundación de la solución NetRentManag
 
 **Objetivo**: Cerrar la iniciativa con trazabilidad, formato consistente y comprobaciones completas.
 
-- [ ] T026 [P] Revisar que los artefactos Markdown de `specs/001-NetRentManager-solution-foundation/` estén redactados en español y no contengan placeholders de plantilla.
-- [ ] T027 [P] Revisar que no existan migraciones, configuraciones EF Core, seeds, entidades persistentes ni scripts SQL asociados a esta iniciativa.
-- [ ] T028 Ejecutar `dotnet build app/NetRentManager.sln` y `dotnet test app/NetRentManager.sln` como validación final.
-- [ ] T029 Revisar `git diff --check` y el estado de `global.json`; marcar esta tarea y las anteriores como completadas solo después de verificar sus resultados.
+- [X] T026 [P] Revisar que los artefactos Markdown de `specs/001-NetRentManager-solution-foundation/` estén redactados en español y no contengan placeholders de plantilla.
+- [X] T027 [P] Revisar que no existan migraciones, configuraciones EF Core, seeds, entidades persistentes ni scripts SQL asociados a esta iniciativa.
+- [X] T028 Ejecutar `dotnet build app/NetRentManager.sln` y `dotnet test app/NetRentManager.sln` como validación final.
+- [X] T029 Revisar `git diff --check` y el estado de `global.json`; marcar esta tarea y las anteriores como completadas solo después de verificar sus resultados.
 
 ## Dependencias y orden de ejecución
 
