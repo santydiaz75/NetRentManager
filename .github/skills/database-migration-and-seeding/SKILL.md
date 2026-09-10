@@ -144,7 +144,7 @@ await app.MigrateAsync();
 app.Run();
 ```
 
-## Consideraciones específicas de EF Core 11
+## Consideraciones específicas de EF Core 10
 
 - El snapshot del modelo ahora registra el ID de la última migración. Si dos ramas generan migraciones divergentes, el merge producirá un conflicto en el snapshot. Esto es intencional: el conflicto DEBE resolverse descartando uno de los árboles de migraciones y generando una migración unificada, nunca editando el snapshot a mano para "silenciar" el conflicto.
 - Existe un nuevo `dotnet ef database update --add` que genera y aplica una migración en un solo paso, compilándola en runtime. Este comando está PROHIBIDO en este flujo (ver Prohibiciones), porque viola la regla de que la spec genera los archivos de migración y estos deben ser revisados antes de aplicarse.
@@ -225,7 +225,7 @@ Está prohibido:
 - Ejecutar seeds no idempotentes.
 - Usar `EnsureCreatedAsync()` en bases relacionales con migraciones.
 - Hacer que la aplicación genere archivos de migración automáticamente.
-- Usar `dotnet ef database update --add` (EF Core 11) para generar y aplicar migraciones en un solo paso sin revisión.
+- Usar `dotnet ef database update --add` (EF Core 10) para generar y aplicar migraciones en un solo paso sin revisión.
 - Resolver conflictos de merge del snapshot del modelo editándolo manualmente en lugar de unificar las migraciones divergentes.
 - Invocar el seeder manualmente después de `MigrateAsync()` o en cualquier otro punto del arranque; el seed solo se ejecuta a través de `UseSeeding()` / `UseAsyncSeeding()`.
 - Configurar solo uno de los dos delegados de seeding; ambos son obligatorios.

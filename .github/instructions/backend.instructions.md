@@ -8,7 +8,7 @@ Estas instrucciones aplican a todo trabajo backend del proyecto.
 
 El backend DEBE implementarse con:
 
-- .NET 11.
+- .NET 10.
 - ASP.NET Core Minimal APIs.
 - Vertical Slice Architecture.
 - EF Core.

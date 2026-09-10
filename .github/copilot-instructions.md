@@ -155,7 +155,7 @@ Si esa carpeta existe, se considera defecto crítico de gobernanza.
 
 El proyecto usa:
 
-- .NET 11
+- .NET 10
 - ASP.NET Core Minimal APIs.
 - Blazor Web App con Razor Components.
 - EF Core.

@@ -585,7 +585,7 @@ await app.MigrateAsync();
 
 ---
 
-## Reglas específicas para EF Core 11
+## Reglas específicas para EF Core 10
 
 ### Conflictos en el snapshot
 
