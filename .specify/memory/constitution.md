@@ -1,27 +1,24 @@
 <!--
 Sync Impact Report
-- Version change: template-unset -> 1.0.0
+- Version change: 1.0.0 -> 1.1.0
 - Modified principles:
-	- Principle slot 1 -> I. Solucion Fullstack Unica
-	- Principle slot 2 -> II. Spec-Driven Development No Negociable
-	- Principle slot 3 -> III. Arquitectura Canonica de Backend y Frontend
-	- Principle slot 4 -> IV. Persistencia Evolutiva y Contratos Estables
-	- Principle slot 5 -> V. Calidad, Trazabilidad y Disciplina de Entrega
+  - II. Spec-Driven Development (No Negociable): incorpora estados canónicos y
+    transiciones automáticas como parte del flujo obligatorio.
 - Added sections:
-	- Restricciones Operativas
-	- Flujo de Trabajo y Validaciones
+  - Ciclo de estado de specs
 - Removed sections:
-	- Ninguna
+  - Ninguna
 - Templates requiring updates:
-	- ✅ reviewed without changes: .specify/templates/plan-template.md
-	- ✅ reviewed without changes: .specify/templates/spec-template.md
-	- ✅ reviewed without changes: .specify/templates/tasks-template.md
-	- ⚠ pending manual review: .specify/templates/commands/*.md (directory not present)
+  - ✅ actualizado: .specify/templates/spec-template.md
+  - ✅ actualizado: .specify/templates/plan-template.md
+  - ✅ actualizado: .specify/templates/tasks-template.md
+  - ⚠ revisión manual pendiente: .specify/templates/commands/*.md (directorio ausente)
 - Runtime guidance reviewed:
-	- ✅ reviewed without changes: .github/agents/speckit.constitution.agent.md
-	- ✅ reviewed without changes: .specify/extensions/agent-context/README.md
+  - ✅ actualizado: .github/agents/speckit.implement.agent.md
+  - ✅ revisados: .github/agents/speckit.spec-status.before-implement.agent.md
+    y .github/agents/speckit.spec-status.after-implement.agent.md
 - Follow-up TODOs:
-	- Ninguno
+  - Ninguno
 -->
 
 # Constitución del Proyecto NetRentManager
@@ -136,6 +133,28 @@ Reglas de secuencia obligatorias:
 4. speckit.tasks requiere plan.md.
 5. speckit.implement requiere tasks.md.
 
+## Ciclo de estado de specs
+
+Cada spec DEBE declarar uno de estos estados canónicos: `Borrador`, `Aprobada`,
+`En implementación` o `Implementada`.
+
+Solo se permiten las siguientes transiciones, ejecutadas automáticamente por el
+flujo Speckit:
+
+- `Borrador` -> `Aprobada`.
+- `Aprobada` -> `En implementación`, al iniciar `speckit.implement`.
+- `En implementación` -> `Implementada`, al finalizar la implementación con todas
+	las validaciones cumplidas.
+
+Está prohibido marcar una spec como `Implementada` si existe al menos una tarea
+sin completar en `tasks.md` o si `quickstart.md` no contiene evidencia de
+validación. Si falla cualquiera de estas condiciones, el estado DEBE permanecer
+en `En implementación` y el flujo DEBE reportar la causa explícita del bloqueo.
+
+Cada cambio de estado DEBE dejar trazabilidad con estado origen, estado destino,
+motivo y fecha ISO `YYYY-MM-DD`. Una transición inválida DEBE bloquearse sin
+modificar el estado de la spec.
+
 ---
 
 ## Modo Interactivo de Preguntas
@@ -235,4 +254,4 @@ La única resolución legítima es la decisión humana documentada vía enmienda
 
 
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-04 | **Last Amended**: 2026-07-04
+**Version**: 1.1.0 | **Ratified**: 2026-07-04 | **Last Amended**: 2026-09-10

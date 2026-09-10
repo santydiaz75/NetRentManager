@@ -157,6 +157,8 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX Registrar evidencia de validación en quickstart.md
+- [ ] TXXX Confirmar que no quedan tareas pendientes antes de cerrar la spec
 
 ---
 

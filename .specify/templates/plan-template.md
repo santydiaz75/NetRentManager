@@ -42,6 +42,11 @@
 
 [Gates determined based on constitution file]
 
+- La spec declara un estado canónico válido y el plan respeta la transición
+  permitida para la fase actual.
+- El plan incluye validación de `tasks.md` y evidencia en `quickstart.md` antes
+  de permitir el estado `Implementada`.
+
 ## Project Structure
 
 ### Documentation (this feature)
