@@ -80,7 +80,7 @@ Según el tipo de cambio, usar uno o más de los siguientes:
 .github/skills/vertical-slice-handlers/SKILL.md
 .github/skills/vertical-slice-mapping/SKILL.md
 .github/skills/result-problem-details/SKILL.md
-
+.github/skills/testing-minimal-apis/SKILL.md
 .github/skills/domain-events/SKILL.md
 .github/skills/module-public-api/SKILL.md
 .github/skills/ef-core-entity-configuration/SKILL.md
