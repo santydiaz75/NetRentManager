@@ -10,7 +10,9 @@ public class HealthSliceTests
     public async Task MapSliceEndpoints_Includes_HealthSlice_And_Returns200()
     {
         var builder = WebApplication.CreateBuilder();
-        builder.Services.AddInfrastructure(typeof(Program).Assembly);
+        builder.Configuration["ConnectionStrings:DefaultConnection"] =
+            "Host=localhost;Port=5432;Database=netrentmanager_tests;Username=postgres;Password=postgres";
+        builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
 
         await using var app = builder.Build();
         app.MapSliceEndpoints();

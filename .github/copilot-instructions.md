@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
-iniciativa, leer `specs/002-foundation-backend/plan.md`.
+iniciativa, leer `specs/003-properties-persistence-seeding/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto

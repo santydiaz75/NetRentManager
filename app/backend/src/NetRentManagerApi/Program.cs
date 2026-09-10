@@ -1,10 +1,11 @@
 using NetRentManagerApi.Infrastructure.DependencyInjection;
 using NetRentManagerApi.Infrastructure.Endpoints;
+using NetRentManagerApi.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddInfrastructure(typeof(Program).Assembly);
+builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
 
 var app = builder.Build();
 
@@ -16,6 +17,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapSliceEndpoints();
+
+await app.MigrateAsync();
 
 app.Run();
 
