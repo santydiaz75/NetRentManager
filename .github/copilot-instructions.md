@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
-For additional context about technologies to be used, project structure,
-shell commands, and other important information, read the current plan
+Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
+iniciativa, leer `specs/002-foundation-backend/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto
