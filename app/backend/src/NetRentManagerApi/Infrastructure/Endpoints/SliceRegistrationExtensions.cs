@@ -12,7 +12,8 @@ public static class SliceRegistrationExtensions
 
         var sliceTypes = assembly
             .GetExportedTypes()
-            .Where(type => type is { IsClass: true, IsAbstract: false } && typeof(ISlice).IsAssignableFrom(type));
+            .Where(type => type is { IsClass: true, IsAbstract: false } && typeof(ISlice).IsAssignableFrom(type))
+            .OrderBy(type => type.FullName, StringComparer.Ordinal);
 
         foreach (var sliceType in sliceTypes)
         {

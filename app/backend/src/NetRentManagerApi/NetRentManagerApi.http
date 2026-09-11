@@ -63,7 +63,17 @@ Accept: application/json
 
 ###
 
-@PropertyId = 00000000-0000-0000-0000-000000000001
+@PropertyId = a1f0e2d4-7c81-4d12-9e61-0b7f0b1a1001
+
+PATCH {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyId}}/status
+Content-Type: application/json
+Accept: application/json
+
+{
+	"status": "rented"
+}
+
+###
 
 PUT {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyId}}
 Content-Type: multipart/form-data; boundary=UpdatePropertyBoundary

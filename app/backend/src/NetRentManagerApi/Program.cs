@@ -31,7 +31,7 @@ builder.Services.AddOpenApi(options =>
 
         document.Servers = [new OpenApiServer
         {
-            Url = "http://localhost:5065",
+            Url = "/",
             Description = "Entorno local"
         }];
         document.Info.License = new OpenApiLicense
