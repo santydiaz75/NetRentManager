@@ -53,6 +53,19 @@ public sealed class OpenApiDocumentTests
     }
 
     [Fact]
+    public void DocumentPathsAreSortedOrdinally()
+    {
+        using var document = LoadDocument();
+        var pathNames = document.RootElement
+            .GetProperty("paths")
+            .EnumerateObject()
+            .Select(item => item.Name)
+            .ToArray();
+
+        Assert.Equal(pathNames.OrderBy(path => path, StringComparer.Ordinal), pathNames);
+    }
+
+    [Fact]
     public void MultipartOperationsDescribeImageField()
     {
         using var document = LoadDocument();

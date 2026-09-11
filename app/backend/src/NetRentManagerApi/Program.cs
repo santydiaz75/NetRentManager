@@ -52,6 +52,19 @@ builder.Services.AddOpenApi(options =>
             }
         };
 
+        if (document.Paths is not null)
+        {
+            var orderedPaths = document.Paths
+                .OrderBy(path => path.Key, StringComparer.Ordinal)
+                .ToArray();
+
+            document.Paths.Clear();
+            foreach (var (path, pathItem) in orderedPaths)
+            {
+                document.Paths.Add(path, pathItem);
+            }
+        }
+
         foreach (var schema in components.Schemas.Values)
         {
             if (schema.Properties is not null
