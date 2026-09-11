@@ -191,7 +191,7 @@ La verificación debe confirmar Node.js `>= 20`, npx disponible y NSwag listado 
 
 - La implementación real del backend prevalece sobre contratos de specs anteriores; esta iniciativa solo representa y valida sus endpoints sin cambiar su comportamiento de negocio.
 - La generación del documento es un artefacto de build mediante ASP.NET Core/MSBuild; la aplicación no genera OpenAPI durante startup ni bajo demanda.
-- El proyecto backend es `app/backend/src/NetRentManagerApi`; el script no puede apuntar a proyectos o namespaces ajenos como `RealtorApi`.
+- El proyecto backend es `app/backend/src/NetRentManagerApi`; el script no puede apuntar a proyectos o namespaces ajenos como `NetRentManagerApi`.
 - El documento generado debe quedar bajo `wwwroot/openapi/v1.json` y la configuración actual de archivos estáticos se reutilizará para servirlo.
 - `@redocly/cli` se mantendrá como dependencia de desarrollo del workspace y no se incluirá en artefactos runtime del backend.
 - `artifacts/openapi-client-smoke/` es salida generada de validación y no forma parte de la superficie HTTP de la aplicación.

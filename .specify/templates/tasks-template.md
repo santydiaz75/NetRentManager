@@ -158,7 +158,13 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
 - [ ] TXXX Registrar evidencia de validación en quickstart.md
+- [ ] TXXX Regenerar y validar contrato OpenAPI v1: ejecutar `support/scripts/generate-openapi-v1.ps1` y versionar `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json` (obligatorio si la spec crea o modifica endpoints)
 - [ ] TXXX Confirmar que no quedan tareas pendientes antes de cerrar la spec
+
+**Nota obligatoria de contrato**: Toda spec que cree o modifique endpoints del
+backend debe incluir y completar la tarea de regeneración y validación de OpenAPI
+v1. El cierre de la spec exige que `dotnet test` termine correctamente, incluidos
+los `OpenApiDriftTests` como barrera contra desincronización del contrato.
 
 ---
 

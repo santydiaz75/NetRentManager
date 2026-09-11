@@ -1,0 +1,49 @@
+name: Validar contrato OpenAPI v1
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-openapi:
+    name: Validar OpenAPI y detectar drift
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET desde global.json
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Configurar Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Restaurar herramientas .NET
+        shell: pwsh
+        run: dotnet tool restore
+
+      - name: Regenerar y validar OpenAPI v1
+        shell: pwsh
+        run: ./support/scripts/generate-openapi-v1.ps1
+
+      - name: Ejecutar pruebas de la solución
+        shell: pwsh
+        run: dotnet test app/NetRentManager.sln --no-restore
+
+      - name: Verificar que el contrato versionado no cambió
+        shell: pwsh
+        run: git diff --exit-code -- app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json
