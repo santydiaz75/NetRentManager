@@ -104,7 +104,7 @@ cliente C# generado y fallos explícitos cuando una herramienta o salida falta.
 
 ### Implementación de US2
 
-- [X] T021 [US2] Corregir `support/scripts/generate-openapi-v1.ps1` para usar `app/backend/src/NetRentManagerApi/NetRentManagerApi.csproj`, `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json` y `support/scripts/openapi-v1.nswag.json`, eliminando toda referencia a `RealtorApi`.
+- [X] T021 [US2] Corregir `support/scripts/generate-openapi-v1.ps1` para usar `app/backend/src/NetRentManagerApi/NetRentManagerApi.csproj`, `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json` y `support/scripts/openapi-v1.nswag.json`, eliminando toda referencia a `NetRentManagerApi`.
 - [X] T022 [US2] Completar `support/scripts/generate-openapi-v1.ps1` con comprobaciones explícitas de Node.js, npx, Redocly, dotnet tool restore, códigos `$LASTEXITCODE`, existencia del JSON y existencia del cliente generado.
 - [X] T023 [US2] Ejecutar `support/scripts/generate-openapi-v1.ps1` y comprobar lint Redocly exitoso y cliente C# generado en `artifacts/openapi-client-smoke/` sin cambios manuales al contrato.
 

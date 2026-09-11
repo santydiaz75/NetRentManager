@@ -27,7 +27,7 @@
 ## Decisión 5: Script reproducible
 
 - **Decisión**: Corregir `support/scripts/generate-openapi-v1.ps1` para apuntar a `NetRentManagerApi.csproj`, `wwwroot/openapi/v1.json` y cliente smoke del repositorio, comprobando cada código de salida.
-- **Razonamiento**: El script existente apunta a `RealtorApi` y no puede validar este repositorio.
+- **Razonamiento**: El script existente apunta a `NetRentManagerApi` y no puede validar este repositorio.
 - **Alternativas consideradas**: mantenerlo sin ejecutar, rechazado por requisito obligatorio; script separado, rechazado para evitar dos fuentes de regeneración.
 
 ## Decisión 6: Drift
