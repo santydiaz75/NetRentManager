@@ -1,4 +1,5 @@
 using Microsoft.OpenApi;
+using System.Text;
 using System.Text.Json.Nodes;
 using NetRentManagerApi.Infrastructure.DependencyInjection;
 using NetRentManagerApi.Infrastructure.Endpoints;
@@ -67,11 +68,59 @@ builder.Services.AddOpenApi(options =>
         return Task.CompletedTask;
     });
 });
+builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "NetRentManagerApi v1");
+        options.ConfigObject.Urls =
+        [
+            new Swashbuckle.AspNetCore.SwaggerUI.UrlDescriptor
+            {
+                Url = "/openapi/v1.json",
+                Name = "NetRentManagerApi v1"
+            }
+        ];
+        options.IndexStream = () => new MemoryStream(Encoding.UTF8.GetBytes("""
+            <!doctype html>
+            <html lang="es">
+            <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>NetRentManagerApi - Swagger UI</title>
+                <link rel="stylesheet" href="./swagger-ui.css" />
+            </head>
+            <body>
+                <div id="swagger-ui"></div>
+                <script src="./swagger-ui-bundle.js"></script>
+                <script src="./swagger-ui-standalone-preset.js"></script>
+                <script>
+                    window.onload = function () {
+                        window.ui = SwaggerUIBundle({
+                            url: "/openapi/v1.json",
+                            dom_id: "#swagger-ui",
+                            deepLinking: true,
+                            presets: [
+                                SwaggerUIBundle.presets.apis,
+                                SwaggerUIStandalonePreset
+                            ],
+                            layout: "StandaloneLayout"
+                        });
+                    };
+                </script>
+            </body>
+            </html>
+            """));
+    });
+}
+
 app.UseStaticFiles();
 
 app.MapSliceEndpoints();

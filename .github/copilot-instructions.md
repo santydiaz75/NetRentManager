@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
-iniciativa, leer `specs/009-open-api/plan.md`.
+iniciativa, leer `specs/005-swagger-ui/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto
@@ -46,11 +46,16 @@ Las specs aprobadas ubicadas en `specs/` son la única fuente de verdad del proy
 
 Está prohibido implementar funcionalidad que no esté descrita en el `spec.md` vigente.
 
-Cada iniciativa DEBE contener exactamente tres archivos:
+Cada iniciativa DEBE contener exactamente tres artefactos canónicos de ejecución:
 
 - `spec.md`
 - `plan.md`
 - `tasks.md`
+
+Una iniciativa puede incluir artefactos auxiliares trazables, como `research.md`,
+`data-model.md`, `quickstart.md`, contratos y checklists, dentro de su carpeta.
+Estos artefactos no sustituyen a los tres archivos canónicos y sus cambios deben
+quedar asociados a tareas de `tasks.md`.
 
 El flujo obligatorio mínimo es:
 

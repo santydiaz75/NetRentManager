@@ -109,11 +109,17 @@ La carpeta .specify se reserva para infraestructura operativa de spec-kit.
 
 ## Método de Trabajo
 
-Cada iniciativa DEBE contener exactamente tres archivos:
+Cada iniciativa DEBE contener exactamente tres artefactos canónicos de ejecución:
 
 - spec.md
 - plan.md
 - tasks.md
+
+Una iniciativa PUEDE contener artefactos auxiliares trazables, como
+`research.md`, `data-model.md`, `quickstart.md`, contratos y checklists, siempre
+que permanezcan dentro de la carpeta de la iniciativa, no sustituyan a los tres
+artefactos canónicos y cada cambio de código o documentación quede asociado a
+una tarea de `tasks.md`.
 
 Antes de implementar:
 
