@@ -12,6 +12,8 @@ public sealed class UpdatePropertySlice : ISlice
         app.MapPut("/api/properties/{id:guid}", HandleAsync)
             .WithName("UpdateProperty")
             .WithTags("Properties")
+            .WithSummary("Actualizar una propiedad")
+            .WithDescription("Actualiza una propiedad y reemplaza opcionalmente su imagen.")
             .DisableAntiforgery()
             .Accepts<UpdatePropertyRequest>("multipart/form-data")
             .Produces<UpdatePropertyResponse>()

@@ -12,6 +12,8 @@ public sealed class GetPropertyByIdSlice : ISlice
         app.MapGet("/api/properties/{id:guid}", HandleAsync)
             .WithName("GetPropertyById")
             .WithTags("Properties")
+            .WithSummary("Consultar una propiedad")
+            .WithDescription("Devuelve una propiedad por su identificador.")
             .Produces<GetPropertyByIdResponse>()
             .ProducesProblem(StatusCodes.Status404NotFound)
             .ProducesProblem(StatusCodes.Status500InternalServerError);

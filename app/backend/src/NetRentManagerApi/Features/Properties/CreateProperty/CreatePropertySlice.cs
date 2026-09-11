@@ -12,6 +12,8 @@ public sealed class CreatePropertySlice : ISlice
         app.MapPost("/api/properties", HandleAsync)
             .WithName("CreateProperty")
             .WithTags("Properties")
+            .WithSummary("Crear una propiedad")
+            .WithDescription("Crea una propiedad con una imagen opcional.")
             .DisableAntiforgery()
             .Accepts<CreatePropertyRequest>("multipart/form-data")
             .Produces<CreatePropertyResponse>(StatusCodes.Status201Created)

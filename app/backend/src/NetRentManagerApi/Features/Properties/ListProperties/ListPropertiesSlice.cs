@@ -11,7 +11,12 @@ public sealed class ListPropertiesSlice : ISlice
     {
         app.MapGet("/api/properties", HandleAsync)
             .WithName("ListProperties")
-            .WithTags("Properties");
+            .WithTags("Properties")
+            .WithSummary("Listar propiedades")
+            .WithDescription("Devuelve propiedades paginadas con URLs públicas de imagen.")
+            .Produces<PagedPropertiesResponse>()
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
     }
 
     private static async Task<IResult> HandleAsync(

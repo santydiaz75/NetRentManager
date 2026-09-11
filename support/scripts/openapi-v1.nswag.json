@@ -1,0 +1,20 @@
+{
+  "runtime": "Net100",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "../../app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "className": "NetRentManagerApiClient",
+      "namespace": "NetRentManagerApi.OpenApiSmoke",
+      "output": "../../artifacts/openapi-client-smoke/NetRentManagerApiClient.cs",
+      "generateClientClasses": true,
+      "generateClientInterfaces": true,
+      "injectHttpClient": true,
+      "disposeHttpClient": false,
+      "useBaseUrl": true
+    }
+  }
+}
