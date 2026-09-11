@@ -20,7 +20,7 @@ Definir e implementar el modelo persistente inicial de propiedades y estados de 
 La organización principal DEBE ser por Features para casos de uso de negocio.  
 No crear una jerarquía paralela de endpoints de negocio fuera de Features.
 
-app/backend/src/RealtorApi/
+app/backend/src/NetRentManagerApi/
 - Domain/
   - Properties/
     - Property.cs
@@ -42,7 +42,7 @@ app/backend/src/RealtorApi/
       - PropertyConfiguration.cs
   - Migrations/
 - Program.cs
-- RealtorApi.csproj
+- NetRentManagerApi.csproj
 - appsettings.json
 
 ## Reglas de organización
@@ -101,7 +101,7 @@ app/backend/src/RealtorApi/
 - El flujo debe cumplir la secuencia definida en database.instructions.md, incluyendo ejecución de UseAsyncSeeding aunque no existan migraciones pendientes.
 
 ### 5) Inclusión de archivos externos en el proyecto
-- Integrar JSON, manifest e imágenes de support en RealtorApi.csproj para build y publish.
+- Integrar JSON, manifest e imágenes de support en NetRentManagerApi.csproj para build y publish.
 - Los JSON y el manifest deben quedar disponibles en runtime para el seeding.
 - Las imágenes deben quedar disponibles en la ubicación final consumible por la API.
 - El seed debe resolver rutas desde seed-manifest.json y no con rutas hardcodeadas dispersas.

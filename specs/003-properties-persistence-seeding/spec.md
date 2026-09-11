@@ -121,7 +121,7 @@ Como consumidor de futuras consultas de propiedades, necesito que los datos JSON
 
 ## Suposiciones
 
-- El proyecto real de esta solución es `app/backend/src/NetRentManagerApi`; la referencia del prompt a `RealtorApi` se interpreta como un nombre genérico y no autoriza crear un segundo proyecto o namespace paralelo.
+- El proyecto real de esta solución es `app/backend/src/NetRentManagerApi`; la referencia del prompt a `NetRentManagerApi` se interpreta como un nombre genérico y no autoriza crear un segundo proyecto o namespace paralelo.
 - La spec 002 ya dejó disponible el patrón `ISlice`, `AddInfrastructure` y la composición de `Program.cs`; esta iniciativa los reutiliza y evita modificar `HealthSlice` salvo necesidad técnica documentada.
 - PostgreSQL y Npgsql son los proveedores objetivo definidos por la constitución y se configurarán mediante la configuración existente del proyecto.
 - Los archivos `support/seed-data/properties.json`, `support/seed-data/properties-statuses.json`, `support/seed-data/seed-manifest.json` y `support/seed-data/images/` son las fuentes iniciales canónicas.
@@ -137,4 +137,4 @@ Como consumidor de futuras consultas de propiedades, necesito que los datos JSON
 - Cambios al frontend o a la API de comunicación Refit.
 - Controllers o una jerarquía de endpoints de negocio fuera de `Features`.
 - Datos semilla adicionales que no estén en los JSON y manifiesto canónicos.
-- Creación de un proyecto, solución o namespace paralelo llamado `RealtorApi`.
+- Creación de un proyecto, solución o namespace paralelo llamado `NetRentManagerApi`.

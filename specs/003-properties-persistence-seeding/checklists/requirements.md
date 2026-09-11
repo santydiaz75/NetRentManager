@@ -29,7 +29,7 @@
 - [x] La funcionalidad tiene resultados medibles alineados con el objetivo solicitado.
 - [x] Las restricciones de persistencia prohíben `HasData`, controllers, duplicación de migraciones y fallbacks manuales.
 - [x] La organización por features y el límite de `Shared` están definidos.
-- [x] La discrepancia de nombre `RealtorApi` frente al proyecto real `NetRentManagerApi` está resuelta como supuesto explícito.
+- [x] La discrepancia de nombre `NetRentManagerApi` frente al proyecto real `NetRentManagerApi` está resuelta como supuesto explícito.
 - [x] La spec respeta la precedencia y el ciclo de estados definidos por la constitución.
 
 ## Notas

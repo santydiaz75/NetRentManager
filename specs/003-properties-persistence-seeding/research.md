@@ -3,11 +3,11 @@
 ## Decisión: reutilizar `NetRentManagerApi`
 
 La implementación se realizará en `app/backend/src/NetRentManagerApi`, que es el
-proyecto real creado por las specs anteriores. La referencia del prompt a `RealtorApi`
+proyecto real creado por las specs anteriores. La referencia del prompt a `NetRentManagerApi`
 se trata como nombre genérico y no se creará una solución, proyecto o namespace
 paralelo.
 
-**Alternativas consideradas**: crear `RealtorApi` se descartó por violar la solución
+**Alternativas consideradas**: crear `NetRentManagerApi` se descartó por violar la solución
 única y por duplicar el backend existente.
 
 ## Decisión: catálogo persistente y enum en la entidad

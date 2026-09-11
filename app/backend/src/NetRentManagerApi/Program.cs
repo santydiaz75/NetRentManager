@@ -2,7 +2,13 @@ using NetRentManagerApi.Infrastructure.DependencyInjection;
 using NetRentManagerApi.Infrastructure.Endpoints;
 using NetRentManagerApi.Infrastructure.Persistence;
 
-var builder = WebApplication.CreateBuilder(args);
+var runtimeWebRoot = Path.Combine(AppContext.BaseDirectory, "wwwroot");
+Directory.CreateDirectory(runtimeWebRoot);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = runtimeWebRoot
+});
 
 builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
@@ -10,6 +16,7 @@ builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assemb
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
