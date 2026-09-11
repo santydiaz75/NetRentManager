@@ -9,7 +9,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5065",
+      "url": "/",
       "description": "Entorno local"
     }
   ],

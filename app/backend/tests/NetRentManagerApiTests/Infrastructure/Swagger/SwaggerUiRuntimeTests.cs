@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 
@@ -27,8 +28,13 @@ public sealed class SwaggerUiRuntimeTests
         Assert.Equal("application/json", openApiResponse.Content.Headers.ContentType?.MediaType);
 
         var html = await indexResponse.Content.ReadAsStringAsync();
+        var openApiJson = await openApiResponse.Content.ReadAsStringAsync();
+        using var openApiDocument = JsonDocument.Parse(openApiJson);
+
         Assert.Contains("/openapi/v1.json", html, StringComparison.Ordinal);
         Assert.Contains("NetRentManagerApi", html, StringComparison.Ordinal);
+        Assert.Equal("/", openApiDocument.RootElement.GetProperty("servers")[0].GetProperty("url").GetString());
+        Assert.DoesNotContain("http://localhost:5065", openApiJson, StringComparison.Ordinal);
     }
 
     [Fact]
