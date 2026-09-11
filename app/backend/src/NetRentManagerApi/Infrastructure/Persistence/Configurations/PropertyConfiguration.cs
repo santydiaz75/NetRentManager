@@ -65,7 +65,7 @@ public sealed class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(property => property.ImageUrl)
             .HasColumnName("image_url")
             .HasMaxLength(500)
-            .IsRequired();
+            .IsRequired(false);
 
         builder.Property(property => property.CreatedAt)
             .HasColumnName("created_at")

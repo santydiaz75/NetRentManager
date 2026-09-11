@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NetRentManagerApi.Domain.Properties;
@@ -95,6 +94,37 @@ public sealed class ListPropertiesHandlerTests
 
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => handler.HandleAsync(
             new ListPropertiesRequest(), request, cancellationSource.Token));
+    }
+
+    [Fact]
+    public async Task PropertyWithoutImage_ReturnsItemWithNullImageUrl()
+    {
+        await using var context = CreateContext();
+        context.Properties.Add(new Property
+        {
+            Id = Guid.NewGuid(),
+            Title = "Without image",
+            Description = "Description",
+            Address = "Address",
+            Price = 1,
+            Status = PropertyStatus.Available,
+            BedroomCount = 1,
+            BathroomCount = 1,
+            AreaSquareMeters = 20,
+            ImageUrl = null
+        });
+        await context.SaveChangesAsync();
+
+        var handler = new ListPropertiesHandler(context, new LoggerFactory().CreateLogger<ListPropertiesHandler>());
+        var request = new DefaultHttpContext().Request;
+        request.Scheme = "http";
+        request.Host = new HostString("localhost", 5023);
+
+        var result = await handler.HandleAsync(new ListPropertiesRequest(), request, CancellationToken.None);
+
+        Assert.True(result.IsSuccess);
+        Assert.Null(result.Value!.Items.Single().ImageUrl);
+        Assert.Equal("Available", result.Value.Items.Single().Status);
     }
 
     private static AppDbContext CreateContext()

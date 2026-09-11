@@ -1,6 +1,41 @@
 @NetRentManagerApi_HostAddress = http://localhost:5065
 
-GET {{NetRentManagerApi_HostAddress}}/weatherforecast/
+POST {{NetRentManagerApi_HostAddress}}/api/properties
+Content-Type: multipart/form-data; boundary=CreatePropertyBoundary
+
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="title"
+
+Apartamento nuevo
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="description"
+
+Descripción de prueba
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="address"
+
+Calle Principal 10
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="price"
+
+1200
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="status"
+
+Available
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="bedroomCount"
+
+2
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="bathroomCount"
+
+1
+--CreatePropertyBoundary
+Content-Disposition: form-data; name="areaSquareMeters"
+
+70
+--CreatePropertyBoundary--
 Accept: application/json
 
 ###

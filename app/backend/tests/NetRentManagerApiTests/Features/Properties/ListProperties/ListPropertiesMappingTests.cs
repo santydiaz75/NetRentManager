@@ -1,5 +1,4 @@
 using System.Text.Json;
-using NetRentManagerApi.Domain.Properties;
 using NetRentManagerApi.Features.Properties.ListProperties;
 
 namespace NetRentManagerApiTests.Features.Properties.ListProperties;
@@ -16,7 +15,7 @@ public sealed class ListPropertiesMappingTests
                 "Description",
                 "Address",
                 100,
-                PropertyStatus.Available,
+                "Available",
                 2,
                 1,
                 75,

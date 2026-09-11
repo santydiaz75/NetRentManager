@@ -18,11 +18,12 @@ public sealed class ListPropertiesSlice : ISlice
         [AsParameters]
         ListPropertiesRequest request,
         [FromServices]
-        IHandler handler,
+        IEnumerable<IHandler> handlers,
         HttpRequest httpRequest,
         CancellationToken cancellationToken)
     {
-        if (handler is not ListPropertiesHandler listPropertiesHandler)
+        var listPropertiesHandler = handlers.OfType<ListPropertiesHandler>().SingleOrDefault();
+        if (listPropertiesHandler is null)
         {
             return Results.Problem(statusCode: StatusCodes.Status500InternalServerError);
         }

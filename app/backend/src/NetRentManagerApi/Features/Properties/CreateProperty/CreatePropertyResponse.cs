@@ -1,6 +1,6 @@
-namespace NetRentManagerApi.Features.Properties.ListProperties;
+namespace NetRentManagerApi.Features.Properties.CreateProperty;
 
-public sealed record PropertyListItem(
+public sealed record CreatePropertyResponse(
     Guid Id,
     string Title,
     string Description,
@@ -10,4 +10,5 @@ public sealed record PropertyListItem(
     int BedroomCount,
     int BathroomCount,
     decimal AreaSquareMeters,
-    string? ImageUrl);
+    string? ImageUrl,
+    DateTimeOffset CreatedAt);

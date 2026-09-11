@@ -3,7 +3,7 @@ namespace NetRentManagerApiTests.Infrastructure.Persistence;
 public sealed class MigrationShapeTests
 {
     [Fact]
-    public void AddPropertyManagementEntities_Is_The_Only_Functional_Migration()
+    public void Property_Migrations_Contain_Only_The_Approved_Functional_Migrations()
     {
         var migrationDirectory = Path.GetFullPath(
             Path.Combine(AppContext.BaseDirectory, "../../../../../src/NetRentManagerApi/Infrastructure/Persistence/Migrations"));
@@ -17,10 +17,9 @@ public sealed class MigrationShapeTests
                 && !file.EndsWith(".Designer.cs", StringComparison.OrdinalIgnoreCase))
             .ToList();
 
-        Assert.Single(migrationFiles);
-
-        var migrationFileName = Path.GetFileNameWithoutExtension(migrationFiles[0]);
-        Assert.Contains("AddPropertyManagementEntities", migrationFileName, StringComparison.Ordinal);
+        Assert.Equal(2, migrationFiles.Count);
+        Assert.Contains(migrationFiles, file => file.EndsWith("AddPropertyManagementEntities.cs", StringComparison.Ordinal));
+        Assert.Contains(migrationFiles, file => file.EndsWith("AllowNullPropertyImageUrl.cs", StringComparison.Ordinal));
     }
 
     [Fact]

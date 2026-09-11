@@ -22,10 +22,10 @@ public sealed class ImageUrlTests
 
         foreach (var property in properties)
         {
-            Assert.StartsWith("/assets/properties/", property.ImageUrl, StringComparison.Ordinal);
-            Assert.DoesNotContain("support", property.ImageUrl, StringComparison.OrdinalIgnoreCase);
+            Assert.StartsWith("/assets/properties/", property.ImageUrl!, StringComparison.Ordinal);
+            Assert.DoesNotContain("support", property.ImageUrl!, StringComparison.OrdinalIgnoreCase);
 
-            var fileName = Path.GetFileName(property.ImageUrl);
+            var fileName = Path.GetFileName(property.ImageUrl!);
             Assert.True(File.Exists(Path.Combine(targetDirectory, fileName)));
         }
     }

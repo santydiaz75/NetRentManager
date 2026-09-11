@@ -13,7 +13,7 @@ internal sealed record PropertyListProjection(
     int BedroomCount,
     int BathroomCount,
     decimal AreaSquareMeters,
-    string ImageUrl);
+    string? ImageUrl);
 
 internal static class ListPropertiesMapping
 {
@@ -21,9 +21,29 @@ internal static class ListPropertiesMapping
 
     public static Result<PropertyListItem> ToResponse(this PropertyListProjection projection, HttpRequest request)
     {
-        if (string.IsNullOrWhiteSpace(projection.ImageUrl)
-            || request.Host is { HasValue: false }
+        if (request.Host is { HasValue: false }
             || string.IsNullOrWhiteSpace(request.Scheme))
+        {
+            return Result<PropertyListItem>.Failure(
+                Error.Internal("properties.image.invalid", "La propiedad no tiene una imagen pública válida."));
+        }
+
+        if (projection.ImageUrl is null)
+        {
+            return Result<PropertyListItem>.Success(new PropertyListItem(
+                projection.Id,
+                projection.Title,
+                projection.Description,
+                projection.Address,
+                projection.Price,
+                projection.Status.ToString(),
+                projection.BedroomCount,
+                projection.BathroomCount,
+                projection.AreaSquareMeters,
+                null));
+        }
+
+        if (string.IsNullOrWhiteSpace(projection.ImageUrl))
         {
             return Result<PropertyListItem>.Failure(
                 Error.Internal("properties.image.invalid", "La propiedad no tiene una imagen pública válida."));
@@ -61,7 +81,7 @@ internal static class ListPropertiesMapping
             projection.Description,
             projection.Address,
             projection.Price,
-            projection.Status,
+            projection.Status.ToString(),
             projection.BedroomCount,
             projection.BathroomCount,
             projection.AreaSquareMeters,
