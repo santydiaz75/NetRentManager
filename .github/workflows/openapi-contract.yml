@@ -40,9 +40,9 @@ jobs:
         shell: pwsh
         run: ./support/scripts/generate-openapi-v1.ps1
 
-      - name: Ejecutar pruebas de la solución
+      - name: Ejecutar pruebas de la solución sin regenerar OpenAPI
         shell: pwsh
-        run: dotnet test app/NetRentManager.sln --no-restore
+        run: dotnet test app/NetRentManager.sln --no-restore -p:OpenApiGenerateDocumentsOnBuild=false
 
       - name: Verificar que el contrato versionado no cambió
         shell: pwsh

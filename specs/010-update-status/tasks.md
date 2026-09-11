@@ -109,6 +109,7 @@ description: "Lista de tareas para implementar la actualización de estado de un
 - [X] T029 Regenerar y validar contrato OpenAPI v1: ejecutar `support/scripts/generate-openapi-v1.ps1` y versionar `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json`.
 - [X] T030 [P] Revisar `specs/010-update-status/checklists/requirements.md` y confirmar que cada requisito queda cubierto por una tarea completada, sin modificar los marcadores del checklist durante la implementación.
 - [X] T031 Confirmar en `specs/010-update-status/tasks.md` que todas las tareas completadas están marcadas `[X]` y que no queda ninguna tarea sin trazabilidad antes de cerrar la spec.
+- [X] T032 Ajustar `.github/workflows/openapi-contract.yml` para ejecutar las pruebas con `OpenApiGenerateDocumentsOnBuild=false`, evitando que el build de tests sobrescriba el contrato después de su regeneración y validación.
 
 ## Dependencias y oportunidades de paralelización
 
