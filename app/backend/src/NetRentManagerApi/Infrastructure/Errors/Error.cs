@@ -9,6 +9,12 @@ public sealed record Error(
     public static Error Validation(string code, string message, IReadOnlyDictionary<string, string[]> details)
         => new(code, message, ErrorType.Validation, details);
 
+    public static Error UnsupportedMediaType(string code, string message)
+        => new(code, message, ErrorType.UnsupportedMediaType);
+
+    public static Error PayloadTooLarge(string code, string message)
+        => new(code, message, ErrorType.PayloadTooLarge);
+
     public static Error NotFound(string code, string message)
         => new(code, message, ErrorType.NotFound);
 

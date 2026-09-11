@@ -21,11 +21,6 @@ app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwaggerUI(options =>
-    {
-        options.RoutePrefix = "swagger";
-        options.SwaggerEndpoint("/openapi/v1.json", "NetRentManagerApi v1");
-    });
 }
 
 app.MapSliceEndpoints();

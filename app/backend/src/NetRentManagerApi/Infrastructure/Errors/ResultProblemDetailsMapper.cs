@@ -45,6 +45,8 @@ public static class ResultProblemDetailsMapper
             ErrorType.NotFound => StatusCodes.Status404NotFound,
             ErrorType.Conflict => StatusCodes.Status409Conflict,
             ErrorType.Validation => StatusCodes.Status400BadRequest,
+            ErrorType.UnsupportedMediaType => StatusCodes.Status415UnsupportedMediaType,
+            ErrorType.PayloadTooLarge => StatusCodes.Status413PayloadTooLarge,
             ErrorType.Forbidden => StatusCodes.Status403Forbidden,
             ErrorType.Internal => StatusCodes.Status500InternalServerError,
             _ => StatusCodes.Status400BadRequest

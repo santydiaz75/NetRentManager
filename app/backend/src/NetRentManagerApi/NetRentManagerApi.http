@@ -39,3 +39,90 @@ Content-Disposition: form-data; name="areaSquareMeters"
 Accept: application/json
 
 ###
+
+@PropertyId = 00000000-0000-0000-0000-000000000001
+
+PUT {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyId}}
+Content-Type: multipart/form-data; boundary=UpdatePropertyBoundary
+
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="title"
+
+Apartamento actualizado
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="description"
+
+Descripción actualizada
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="address"
+
+Calle Principal 10
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="price"
+
+1250
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="status"
+
+Available
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="bedroomCount"
+
+2
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="bathroomCount"
+
+1
+--UpdatePropertyBoundary
+Content-Disposition: form-data; name="areaSquareMeters"
+
+70
+--UpdatePropertyBoundary--
+Accept: application/json
+
+###
+
+PUT {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyId}}
+Content-Type: multipart/form-data; boundary=UpdatePropertyImageBoundary
+
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="title"
+
+Apartamento con imagen actualizada
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="description"
+
+Descripción actualizada con imagen
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="address"
+
+Calle Principal 11
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="price"
+
+1300
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="status"
+
+Available
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="bedroomCount"
+
+2
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="bathroomCount"
+
+2
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="areaSquareMeters"
+
+80
+--UpdatePropertyImageBoundary
+Content-Disposition: form-data; name="image"; filename="property.png"
+Content-Type: image/png
+
+< .\support\seed-data\images\properties\1.png
+--UpdatePropertyImageBoundary--
+Accept: application/json
+
+###
