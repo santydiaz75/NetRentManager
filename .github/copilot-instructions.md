@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
-iniciativa, leer `specs/007-properties-update/plan.md`.
+iniciativa, leer `specs/008-properties-get-by-id/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto

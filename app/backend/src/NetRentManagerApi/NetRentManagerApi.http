@@ -40,6 +40,29 @@ Accept: application/json
 
 ###
 
+@PropertyWithImageId = 00000000-0000-0000-0000-000000000001
+@PropertyWithoutImageId = 00000000-0000-0000-0000-000000000002
+
+GET {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyWithImageId}}
+Accept: application/json
+
+###
+
+GET {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyWithoutImageId}}
+Accept: application/json
+
+###
+
+GET {{NetRentManagerApi_HostAddress}}/api/properties/00000000-0000-0000-0000-000000000099
+Accept: application/json
+
+###
+
+GET {{NetRentManagerApi_HostAddress}}/api/properties/no-es-guid
+Accept: application/json
+
+###
+
 @PropertyId = 00000000-0000-0000-0000-000000000001
 
 PUT {{NetRentManagerApi_HostAddress}}/api/properties/{{PropertyId}}
