@@ -66,6 +66,16 @@ public sealed class OpenApiDocumentTests
     }
 
     [Fact]
+    public void DocumentOperationsWithinPathAreSortedOrdinally()
+    {
+        using var document = LoadDocument();
+        var paths = document.RootElement.GetProperty("paths");
+
+        AssertOperationsSorted(paths.GetProperty("/api/properties"));
+        AssertOperationsSorted(paths.GetProperty("/api/properties/{id}"));
+    }
+
+    [Fact]
     public void MultipartOperationsDescribeImageField()
     {
         using var document = LoadDocument();
@@ -84,6 +94,16 @@ public sealed class OpenApiDocumentTests
             .GetProperty("multipart/form-data")
             .GetProperty("schema");
         return schema.GetProperty("$ref").GetString() is not null;
+    }
+
+    private static void AssertOperationsSorted(JsonElement path)
+    {
+        var operations = path
+            .EnumerateObject()
+            .Select(item => item.Name)
+            .ToArray();
+
+        Assert.Equal(operations.OrderBy(operation => operation, StringComparer.Ordinal), operations);
     }
 
     private static JsonDocument LoadDocument()
