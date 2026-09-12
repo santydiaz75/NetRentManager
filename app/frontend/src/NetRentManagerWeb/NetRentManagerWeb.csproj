@@ -7,4 +7,10 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="15.2.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="15.2.0" />
+    <PackageReference Include="BlazorBlueprint.Icons.Lucide" Version="2.0.2" />
+  </ItemGroup>
+
 </Project>
