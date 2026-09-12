@@ -1,10 +1,13 @@
 using NetRentManagerWeb.Components;
+using NetRentManagerWeb.Services.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddNetRentManagerApiClient(builder.Configuration);
 
 var app = builder.Build();
 
