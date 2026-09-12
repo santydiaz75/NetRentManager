@@ -1,0 +1,56 @@
+@* Controles de paginación por enlaces (sin @onclick), compatibles con render mode Static SSR. *@
+<nav class="page-actions" aria-label="Paginación de propiedades">
+    @if (HasPrevious)
+    {
+        <a class="btn btn-secondary" href="@BuildHref(Page - 1)">
+            <LucideIcon Name="chevron-left" Class="icon icon-sm" />
+            Anterior
+        </a>
+    }
+    else
+    {
+        <span class="btn btn-secondary" aria-disabled="true">
+            <LucideIcon Name="chevron-left" Class="icon icon-sm" />
+            Anterior
+        </span>
+    }
+
+    <span class="card-subtitle">Página @Page de @TotalPages · @TotalItems propiedades</span>
+
+    @if (HasNext)
+    {
+        <a class="btn btn-secondary" href="@BuildHref(Page + 1)">
+            Siguiente
+            <LucideIcon Name="chevron-right" Class="icon icon-sm" />
+        </a>
+    }
+    else
+    {
+        <span class="btn btn-secondary" aria-disabled="true">
+            Siguiente
+            <LucideIcon Name="chevron-right" Class="icon icon-sm" />
+        </span>
+    }
+</nav>
+
+@code {
+    [Parameter, EditorRequired]
+    public int Page { get; set; }
+
+    [Parameter, EditorRequired]
+    public int PageSize { get; set; }
+
+    [Parameter, EditorRequired]
+    public int TotalPages { get; set; }
+
+    [Parameter, EditorRequired]
+    public int TotalItems { get; set; }
+
+    [Parameter, EditorRequired]
+    public bool HasPrevious { get; set; }
+
+    [Parameter, EditorRequired]
+    public bool HasNext { get; set; }
+
+    private string BuildHref(int targetPage) => $"/?page={targetPage}&pageSize={PageSize}";
+}

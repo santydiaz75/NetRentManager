@@ -391,3 +391,41 @@ h1:focus {
     text-align: left;
     color: var(--color-text);
 }
+
+/* ---------------------------------------------------------------------- */
+/* Grilla de propiedades                                                  */
+/* ---------------------------------------------------------------------- */
+
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+    .properties-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .properties-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.property-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    margin-bottom: var(--space-4);
+}
+
+.property-card-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+}
