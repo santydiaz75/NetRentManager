@@ -42,7 +42,7 @@ jobs:
 
       - name: Ejecutar pruebas de la solución sin regenerar OpenAPI
         shell: pwsh
-        run: dotnet test app/NetRentManager.sln --no-restore -p:OpenApiGenerateDocumentsOnBuild=false
+        run: dotnet test app/NetRentManager.sln --no-restore -p:OpenApiGenerateDocuments=false -p:OpenApiGenerateDocumentsOnBuild=false
 
       - name: Verificar que el contrato versionado no cambió
         shell: pwsh
