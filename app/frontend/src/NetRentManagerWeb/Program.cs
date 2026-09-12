@@ -1,5 +1,6 @@
 using NetRentManagerWeb.Components;
 using NetRentManagerWeb.Services.Api;
+using NetRentManagerWeb.Services.Api.Properties;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddNetRentManagerApiClient(builder.Configuration);
+builder.Services.AddPropertiesApiClient();
 
 var app = builder.Build();
 

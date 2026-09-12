@@ -1,0 +1,36 @@
+@using NetRentManagerWeb.Services.Api.Properties
+
+@* Tarjeta individual de propiedad: título, precio, estado e imagen o marcador. *@
+<article class="card">
+    @if (!string.IsNullOrWhiteSpace(Item.ImageUrl))
+    {
+        <img src="@Item.ImageUrl" alt="@Item.Title" class="property-card-image" />
+    }
+    else
+    {
+        <div class="property-card-image property-card-image-placeholder" aria-hidden="true">
+            <LucideIcon Name="image-off" Class="icon icon-lg icon-muted" />
+        </div>
+    }
+
+    <h3 class="card-title">@Item.Title</h3>
+    <p class="card-subtitle">@Item.Address</p>
+
+    <div class="page-actions">
+        <span class="badge">@Item.Price.ToString("C")</span>
+        <span class="badge @StatusBadgeClass">@Item.Status</span>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public PropertyListItem Item { get; set; } = null!;
+
+    private string StatusBadgeClass => Item.Status switch
+    {
+        "Available" => "badge-success",
+        "Maintenance" => "badge-warning",
+        "Rented" => "badge-danger",
+        _ => string.Empty
+    };
+}
