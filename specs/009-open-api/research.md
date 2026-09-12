@@ -2,9 +2,9 @@
 
 ## Decisión 1: Generación durante build
 
-- **Decisión**: Configurar la generación de `openapi/v1.json` durante build mediante `Microsoft.AspNetCore.OpenApi` y MSBuild.
-- **Razonamiento**: El artefacto se puede revisar, lintar, versionar y servir estáticamente; no añade trabajo al startup ni a cada request.
-- **Alternativas consideradas**: generación al iniciar, descartada por efectos de startup; generación bajo demanda, descartada por latencia y por no ser un archivo versionado estable.
+- **Decisión**: Configurar la generación de `openapi/v1.json` durante build mediante `Microsoft.AspNetCore.OpenApi` y MSBuild, activa únicamente para la configuración `Release` (`OpenApiGenerateDocuments`/`OpenApiGenerateDocumentsOnBuild` condicionados a `Configuration == Release`).
+- **Razonamiento**: El artefacto se puede revisar, lintar, versionar y servir estáticamente; no añade trabajo al startup ni a cada request. Restringirlo a `Release` evita que cada build de depuración local regenere y potencialmente modifique el archivo versionado, reduciendo ruido en el control de versiones y la necesidad de credenciales de base de datos durante builds de `Debug` cotidianos.
+- **Alternativas consideradas**: generación al iniciar, descartada por efectos de startup; generación bajo demanda, descartada por latencia y por no ser un archivo versionado estable; generación en toda configuración (incluido `Debug`), descartada porque regenera el contrato en cada compilación local sin necesidad, incluso durante el desarrollo diario.
 
 ## Decisión 2: Publicación estática sin UI
 
@@ -26,7 +26,7 @@
 
 ## Decisión 5: Script reproducible
 
-- **Decisión**: Corregir `support/scripts/generate-openapi-v1.ps1` para apuntar a `NetRentManagerApi.csproj`, `wwwroot/openapi/v1.json` y cliente smoke del repositorio, comprobando cada código de salida.
+- **Decisión**: Corregir `support/scripts/generate-openapi-v1.ps1` para apuntar a `NetRentManagerApi.csproj`, `wwwroot/openapi/v1.json` y cliente smoke del repositorio, comprobando cada código de salida, y compilar explícitamente con `dotnet build -c Release` para activar la generación OpenAPI (condicionada a `Release` según la Decisión 1).
 - **Razonamiento**: El script existente apunta a `NetRentManagerApi` y no puede validar este repositorio.
 - **Alternativas consideradas**: mantenerlo sin ejecutar, rechazado por requisito obligatorio; script separado, rechazado para evitar dos fuentes de regeneración.
 

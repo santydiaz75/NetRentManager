@@ -28,10 +28,15 @@ salida como evidencia válida.
 ```powershell
 npm install
 dotnet tool restore
-dotnet build .\app\backend\src\NetRentManagerApi\NetRentManagerApi.csproj --no-restore
+dotnet build .\app\backend\src\NetRentManagerApi\NetRentManagerApi.csproj -c Release --no-restore
 ```
 
-El build debe generar:
+**Importante**: la generación de `openapi/v1.json` solo se activa en configuración
+`Release` (`OpenApiGenerateDocuments`/`OpenApiGenerateDocumentsOnBuild` en
+`NetRentManagerApi.csproj`). Un build en `Debug` (el habitual al depurar en el IDE)
+NO regenera ni modifica el archivo versionado.
+
+El build en `Release` debe generar:
 
 ```text
 app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json
@@ -43,7 +48,8 @@ app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json
 .\support\scripts\generate-openapi-v1.ps1
 ```
 
-El script debe ejecutar build, comprobar el JSON, ejecutar Redocly lint y generar
+El script compila el proyecto con `dotnet build -c Release` (la única configuración
+con la generación OpenAPI activa), comprueba el JSON, ejecuta Redocly lint y genera
 el cliente C# mediante NSwag en:
 
 ```text
@@ -127,3 +133,10 @@ Resultados:
 - Regeneración reproducible: dos ejecuciones con SHA-256 `6201A31F4DAE615B211C45659F3C4F2A92D89F6B082E238A86C902318DD33002` idéntico.
 - Runtime: `GET /openapi/v1.json` HTTP 200 con `Content-Type: application/json`; `/swagger`, `/redoc` y `/scalar` HTTP 404.
 - No se agregaron migraciones, UI runtime, endpoints de negocio ni cambios de frontend.
+
+## Evidencia de validación (T043 - generación solo en Release)
+
+Fecha: 2026-09-12
+
+- `dotnet build ...NetRentManagerApi.csproj -c Debug`: build correcto, `wwwroot/openapi/v1.json` NO se modifica (`git status --porcelain` sin salida para ese archivo).
+- `support/scripts/generate-openapi-v1.ps1` (compila con `-c Release`): build, Redocly lint y cliente NSwag correctos; `git diff` contra el JSON versionado sin diferencias (sin drift).

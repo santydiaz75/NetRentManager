@@ -57,6 +57,7 @@ nuget.config.local
 !.env.example
 appsettings.Development.json
 appsettings.Local.json
+appsettings.*.Local.json
 secrets.json
 *.pfx
 *.p12

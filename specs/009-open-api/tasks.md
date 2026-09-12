@@ -156,6 +156,7 @@ evidencia reproducible.
 - [X] T040 [P] Verificar que `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json` versionado coincide byte a byte con la salida regenerada por build y hacer fallar la validación si existe drift del artefacto commiteado.
 - [X] T041 [P] Añadir a `app/backend/tests/NetRentManagerApiTests/Infrastructure/OpenApi/OpenApiDocumentTests.cs` una matriz explícita de respuestas esperadas para `/health`, listado, detalle, creación y actualización, incluyendo `200`, `201`, `400`, `404`, `413`, `415` y `500` según corresponda.
 - [X] T042 [P] Añadir a `app/backend/tests/NetRentManagerApiTests/Infrastructure/OpenApi/OpenApiDocumentTests.cs` una validación de nombres exactos `PropertyStatus`, `ProblemDetails` y `HttpValidationProblemDetails` y fallo ante schemas duplicados o variantes no autorizadas.
+- [X] T043 Condicionar `OpenApiGenerateDocuments`/`OpenApiGenerateDocumentsOnBuild` en `app/backend/src/NetRentManagerApi/NetRentManagerApi.csproj` a la configuración `Release`, actualizar `support/scripts/generate-openapi-v1.ps1` para compilar con `dotnet build -c Release`, y confirmar mediante build en `Debug` (sin regenerar `v1.json`) y en `Release` (regenerando sin drift) que el comportamiento es el esperado.
 
 **Checkpoint final**: OpenAPI v1 se genera desde build, se publica como JSON estático,
 se valida con Redocly/NSwag, detecta drift y no agrega UI runtime.
