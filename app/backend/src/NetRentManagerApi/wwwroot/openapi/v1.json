@@ -1,781 +1,91 @@
 {
-  "components": {
-    "schemas": {
-      "CreatePropertyRequest": {
-        "properties": {
-          "address": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "null",
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "description": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "image": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/IFormFile"
-              }
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "null",
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "title": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "type": "object"
-      },
-      "CreatePropertyResponse": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/PropertyStatus"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "address",
-          "price",
-          "status",
-          "bedroomCount",
-          "bathroomCount",
-          "areaSquareMeters",
-          "imageUrl",
-          "createdAt"
-        ],
-        "type": "object"
-      },
-      "GetPropertyByIdResponse": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/PropertyStatus"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "address",
-          "price",
-          "status",
-          "bedroomCount",
-          "bathroomCount",
-          "areaSquareMeters",
-          "imageUrl"
-        ],
-        "type": "object"
-      },
-      "HttpValidationProblemDetails": {
-        "properties": {
-          "detail": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "errors": {
-            "additionalProperties": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "type": "object"
-          },
-          "instance": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "status": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "title": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "type": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "type": "object"
-      },
-      "IFormFile": {
-        "format": "binary",
-        "type": [
-          "null",
-          "string"
-        ]
-      },
-      "PagedPropertiesResponse": {
-        "properties": {
-          "hasNext": {
-            "type": "boolean"
-          },
-          "hasPrevious": {
-            "type": "boolean"
-          },
-          "items": {
-            "items": {
-              "$ref": "#/components/schemas/PropertyListItem"
-            },
-            "type": "array"
-          },
-          "page": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "pageSize": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "totalItems": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "totalPages": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          }
-        },
-        "required": [
-          "items",
-          "page",
-          "pageSize",
-          "totalItems",
-          "totalPages",
-          "hasNext",
-          "hasPrevious"
-        ],
-        "type": "object"
-      },
-      "ProblemDetails": {
-        "properties": {
-          "detail": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "instance": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "status": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "title": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "type": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "type": "object"
-      },
-      "PropertyListItem": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/PropertyStatus"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "address",
-          "price",
-          "status",
-          "bedroomCount",
-          "bathroomCount",
-          "areaSquareMeters",
-          "imageUrl"
-        ],
-        "type": "object"
-      },
-      "PropertyStatus": {
-        "enum": [
-          "Available",
-          "Rented",
-          "Maintenance"
-        ],
-        "type": "string"
-      },
-      "UpdatePropertyRequest": {
-        "properties": {
-          "address": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "null",
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "null",
-              "integer",
-              "string"
-            ]
-          },
-          "description": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "image": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/IFormFile"
-              }
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "null",
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "title": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "type": "object"
-      },
-      "UpdatePropertyResponse": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/PropertyStatus"
-          },
-          "title": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "address",
-          "price",
-          "status",
-          "bedroomCount",
-          "bathroomCount",
-          "areaSquareMeters",
-          "imageUrl",
-          "createdAt",
-          "updatedAt"
-        ],
-        "type": "object"
-      },
-      "UpdatePropertyStatusRequest": {
-        "properties": {
-          "status": {
-            "type": [
-              "null",
-              "string"
-            ]
-          }
-        },
-        "type": "object"
-      },
-      "UpdatePropertyStatusResponse": {
-        "properties": {
-          "address": {
-            "type": "string"
-          },
-          "areaSquareMeters": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "bathroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "bedroomCount": {
-            "format": "int32",
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ]
-          },
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": [
-              "null",
-              "string"
-            ]
-          },
-          "price": {
-            "format": "double",
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "type": [
-              "number",
-              "string"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/PropertyStatus"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "address",
-          "price",
-          "status",
-          "bedroomCount",
-          "bathroomCount",
-          "areaSquareMeters",
-          "imageUrl"
-        ],
-        "type": "object"
-      }
-    }
-  },
+  "openapi": "3.1.1",
   "info": {
+    "title": "NetRentManagerApi | v1",
     "license": {
       "name": "Uso interno de NetRentManagerApi"
     },
-    "title": "NetRentManagerApi | v1",
     "version": "1.0.0"
   },
-  "openapi": "3.1.1",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Entorno local"
+    }
+  ],
   "paths": {
     "/api/properties": {
       "get": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Listar propiedades",
         "description": "Devuelve propiedades paginadas con URLs públicas de imagen.",
         "operationId": "ListProperties",
         "parameters": [
           {
-            "in": "query",
             "name": "Page",
+            "in": "query",
             "schema": {
-              "format": "int32",
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
                 "integer",
                 "string"
-              ]
+              ],
+              "format": "int32"
             }
           },
           {
-            "in": "query",
             "name": "PageSize",
+            "in": "query",
             "schema": {
-              "format": "int32",
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
                 "integer",
                 "string"
-              ]
+              ],
+              "format": "int32"
             }
           }
         ],
         "responses": {
           "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedPropertiesResponse"
                 }
               }
-            },
-            "description": "OK"
+            }
           },
           "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/HttpValidationProblemDetails"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           }
-        },
-        "summary": "Listar propiedades",
-        "tags": [
-          "Properties"
-        ]
+        }
       },
       "post": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Crear una propiedad",
         "description": "Crea una propiedad con una imagen opcional.",
         "operationId": "CreateProperty",
         "requestBody": {
@@ -790,105 +100,105 @@
         },
         "responses": {
           "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CreatePropertyResponse"
                 }
               }
-            },
-            "description": "Created"
+            }
           },
           "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/HttpValidationProblemDetails"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           }
-        },
-        "summary": "Crear una propiedad",
-        "tags": [
-          "Properties"
-        ]
+        }
       }
     },
     "/api/properties/{id}": {
       "get": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Consultar una propiedad",
         "description": "Devuelve una propiedad por su identificador.",
         "operationId": "GetPropertyById",
         "parameters": [
           {
-            "in": "path",
             "name": "id",
+            "in": "path",
             "required": true,
             "schema": {
-              "format": "uuid",
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
         "responses": {
           "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetPropertyByIdResponse"
                 }
               }
-            },
-            "description": "OK"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           }
-        },
-        "summary": "Consultar una propiedad",
-        "tags": [
-          "Properties"
-        ]
+        }
       },
       "put": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Actualizar una propiedad",
         "description": "Actualiza una propiedad y reemplaza opcionalmente su imagen.",
         "operationId": "UpdateProperty",
         "parameters": [
           {
-            "in": "path",
             "name": "id",
+            "in": "path",
             "required": true,
             "schema": {
-              "format": "uuid",
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -904,84 +214,84 @@
         },
         "responses": {
           "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UpdatePropertyResponse"
                 }
               }
-            },
-            "description": "OK"
+            }
           },
           "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/HttpValidationProblemDetails"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "413": {
+            "description": "Payload Too Large",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Payload Too Large"
+            }
           },
           "415": {
+            "description": "Unsupported Media Type",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Unsupported Media Type"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           }
-        },
-        "summary": "Actualizar una propiedad",
-        "tags": [
-          "Properties"
-        ]
+        }
       }
     },
     "/api/properties/{id}/status": {
       "patch": {
+        "tags": [
+          "Properties"
+        ],
+        "summary": "Actualizar el estado de una propiedad",
         "description": "Actualiza únicamente el estado de una propiedad existente.",
         "operationId": "UpdatePropertyStatus",
         "parameters": [
           {
-            "in": "path",
             "name": "id",
+            "in": "path",
             "required": true,
             "schema": {
-              "format": "uuid",
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -997,82 +307,772 @@
         },
         "responses": {
           "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UpdatePropertyStatusResponse"
                 }
               }
-            },
-            "description": "OK"
+            }
           },
           "400": {
+            "description": "Bad Request",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Bad Request"
+            }
           },
           "404": {
+            "description": "Not Found",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Not Found"
+            }
           },
           "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
-            },
-            "description": "Internal Server Error"
+            }
           }
-        },
-        "summary": "Actualizar el estado de una propiedad",
-        "tags": [
-          "Properties"
-        ]
+        }
       }
     },
     "/health": {
       "get": {
+        "tags": [
+          "NetRentManagerApi"
+        ],
+        "summary": "Comprobar el estado de la API",
         "description": "Devuelve el estado operativo del servicio.",
         "operationId": "Health",
         "responses": {
           "200": {
             "description": "OK"
           }
-        },
-        "summary": "Comprobar el estado de la API",
-        "tags": [
-          "NetRentManagerApi"
-        ]
+        }
       }
     }
   },
-  "servers": [
-    {
-      "description": "Entorno local",
-      "url": "/"
+  "components": {
+    "schemas": {
+      "CreatePropertyRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "CreatePropertyResponse": {
+        "required": [
+          "id",
+          "title",
+          "description",
+          "address",
+          "price",
+          "status",
+          "bedroomCount",
+          "bathroomCount",
+          "areaSquareMeters",
+          "imageUrl",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PropertyStatus"
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetPropertyByIdResponse": {
+        "required": [
+          "id",
+          "title",
+          "description",
+          "address",
+          "price",
+          "status",
+          "bedroomCount",
+          "bathroomCount",
+          "areaSquareMeters",
+          "imageUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PropertyStatus"
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "HttpValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "status": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "detail": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "instance": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "IFormFile": {
+        "type": [
+          "null",
+          "string"
+        ],
+        "format": "binary"
+      },
+      "PagedPropertiesResponse": {
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalItems",
+          "totalPages",
+          "hasNext",
+          "hasPrevious"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PropertyListItem"
+            }
+          },
+          "page": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "totalItems": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "totalPages": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "hasNext": {
+            "type": "boolean"
+          },
+          "hasPrevious": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "status": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "detail": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "instance": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "PropertyListItem": {
+        "required": [
+          "id",
+          "title",
+          "description",
+          "address",
+          "price",
+          "status",
+          "bedroomCount",
+          "bathroomCount",
+          "areaSquareMeters",
+          "imageUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PropertyStatus"
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "PropertyStatus": {
+        "enum": [
+          "Available",
+          "Rented",
+          "Maintenance"
+        ],
+        "type": "string"
+      },
+      "UpdatePropertyRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "address": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "image": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/IFormFile"
+              }
+            ]
+          }
+        }
+      },
+      "UpdatePropertyResponse": {
+        "required": [
+          "id",
+          "title",
+          "description",
+          "address",
+          "price",
+          "status",
+          "bedroomCount",
+          "bathroomCount",
+          "areaSquareMeters",
+          "imageUrl",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PropertyStatus"
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
+      "UpdatePropertyStatusRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "UpdatePropertyStatusResponse": {
+        "required": [
+          "id",
+          "title",
+          "description",
+          "address",
+          "price",
+          "status",
+          "bedroomCount",
+          "bathroomCount",
+          "areaSquareMeters",
+          "imageUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "price": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PropertyStatus"
+          },
+          "bedroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "bathroomCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areaSquareMeters": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "imageUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      }
     }
-  ],
+  },
   "tags": [
     {
-      "description": "Operaciones de salud del servicio",
-      "name": "NetRentManagerApi"
+      "name": "NetRentManagerApi",
+      "description": "Operaciones de salud del servicio"
     },
     {
-      "description": "Operaciones públicas de propiedades",
-      "name": "Properties"
+      "name": "Properties",
+      "description": "Operaciones públicas de propiedades"
     }
   ]
 }
