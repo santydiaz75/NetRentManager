@@ -63,6 +63,25 @@ builder.Services.AddOpenApi(options =>
             {
                 document.Paths.Add(path, pathItem);
             }
+
+            foreach (var pathItem in document.Paths.Values)
+            {
+                var operations = pathItem.Operations;
+                if (operations is null || operations.Count == 0)
+                {
+                    continue;
+                }
+
+                var orderedOperations = operations
+                    .OrderBy(operation => operation.Key.ToString(), StringComparer.Ordinal)
+                    .ToArray();
+
+                operations.Clear();
+                foreach (var (operationType, operation) in orderedOperations)
+                {
+                    operations.Add(operationType, operation);
+                }
+            }
         }
 
         foreach (var schema in components.Schemas.Values)
