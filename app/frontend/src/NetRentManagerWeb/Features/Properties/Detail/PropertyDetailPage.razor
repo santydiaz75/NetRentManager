@@ -1,0 +1,83 @@
+@page "/properties/{id}"
+
+<PageTitle>Detalle de propiedad</PageTitle>
+
+<div class="page-container property-detail">
+    <header class="page-header">
+        <div>
+            <h1 class="page-title">Detalle de propiedad</h1>
+            <p class="page-subtitle">Información pública de la propiedad seleccionada.</p>
+        </div>
+        <a class="btn btn-secondary" href="/">Volver al listado</a>
+    </header>
+
+    @if (IsLoading)
+    {
+        <div class="state-loading" role="status">Cargando propiedad...</div>
+    }
+    else if (HasNotFound)
+    {
+        <div class="state-empty" role="status">
+            <h2>Propiedad no encontrada</h2>
+            <p>No existe una propiedad asociada al identificador solicitado.</p>
+        </div>
+    }
+    else if (HasError)
+    {
+        <div class="state-error" role="alert">
+            <h2>No se pudo cargar la propiedad</h2>
+            <p>Intenta nuevamente más tarde.</p>
+        </div>
+    }
+    else if (Property is not null)
+    {
+        <section class="detail-hero" aria-labelledby="property-title">
+            @if (!string.IsNullOrWhiteSpace(Property.ImageUrl))
+            {
+                <img src="@Property.ImageUrl" alt="@Property.Title" class="detail-hero-image" />
+            }
+            else
+            {
+                <div class="detail-hero-placeholder" aria-label="Imagen no disponible">
+                    <LucideIcon Name="image-off" Class="icon icon-lg icon-muted" />
+                </div>
+            }
+
+            <div class="card detail-content">
+                <h2 id="property-title" class="page-title">@Property.Title</h2>
+                <p class="card-subtitle">@Property.Address</p>
+                <div class="detail-summary">
+                    <span class="badge">@Property.Price.ToString("C")</span>
+                    <span class="badge @StatusBadgeClass">@Property.Status</span>
+                </div>
+                <p>@Property.Description</p>
+            </div>
+        </section>
+
+        <section class="card" aria-labelledby="property-data-title">
+            <h2 id="property-data-title" class="card-title">Datos de la propiedad</h2>
+            <dl class="detail-fields">
+                <div class="detail-field">
+                    <dt class="detail-field-label">Identificador</dt>
+                    <dd class="detail-field-value">@Property.Id</dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-field-label">Dirección</dt>
+                    <dd class="detail-field-value">@Property.Address</dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-field-label">Dormitorios</dt>
+                    <dd class="detail-field-value">@Property.BedroomCount</dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-field-label">Baños</dt>
+                    <dd class="detail-field-value">@Property.BathroomCount</dd>
+                </div>
+                <div class="detail-field">
+                    <dt class="detail-field-label">Superficie</dt>
+                    <dd class="detail-field-value">@Property.AreaSquareMeters m²</dd>
+                </div>
+            </dl>
+        </section>
+    }
+</div>

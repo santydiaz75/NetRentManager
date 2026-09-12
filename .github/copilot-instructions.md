@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
-iniciativa, leer `specs/013-blazor-list-properties/plan.md`.
+iniciativa, leer `specs/014-blazor-property-detail/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto

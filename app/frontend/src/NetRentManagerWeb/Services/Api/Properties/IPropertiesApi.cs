@@ -9,4 +9,9 @@ public interface IPropertiesApi
         int page,
         int pageSize,
         CancellationToken cancellationToken = default);
+    
+    [Get("/api/properties/{id}")]
+    Task<ApiResponse<PropertyDetailResponse>> GetPropertyByIdAsync(
+        string id,
+        CancellationToken cancellationToken = default);
 }
