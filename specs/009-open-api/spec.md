@@ -19,6 +19,7 @@
 
 - El documento versionado se generará desde los endpoints reales registrados en `EndpointDataSource`; no se aceptará editar manualmente `openapi/v1.json` como fuente de verdad.
 - La generación de `openapi/v1.json` ocurrirá durante el build mediante la generación OpenAPI de ASP.NET Core/MSBuild; runtime solo servirá el archivo estático y no lo regenerará por request ni por startup.
+- La generación durante build solo se activa en configuración `Release`; un build en `Debug` (el habitual al depurar) no regenera ni modifica `openapi/v1.json`.
 - Las constraints de routing como `{id:guid}` se normalizarán a `{id}` al comparar inventario runtime y paths documentados.
 - La API es pública y no requiere autenticación; `.redocly.yaml` deberá deshabilitar `security-defined` y convertir `operation-4xx-response` en warning.
 - `@redocly/cli` y NSwag son herramientas CLI offline de desarrollo/validación y no forman parte de la superficie runtime.

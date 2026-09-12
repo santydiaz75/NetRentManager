@@ -57,8 +57,8 @@ try {
         throw "❌ Prerrequisito faltante: no existe configuración NSwag en $nswagConfigPath"
     }
 
-    Write-Host "[1/4] Compilando NetRentManagerApi..."
-    dotnet build $projectPath --tl:off | Out-Host
+    Write-Host "[1/4] Compilando NetRentManagerApi (Release)..."
+    dotnet build $projectPath -c Release --tl:off | Out-Host
 
     if (-not (Test-Path $outputPath)) {
         throw "❌ No se generó OpenAPI en: $outputPath"

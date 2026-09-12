@@ -28,7 +28,8 @@ PostgreSQL mediante las features existentes.
 **Artefactos runtime**: `app/backend/src/NetRentManagerApi/wwwroot/openapi/v1.json`
 servido por `UseStaticFiles`; no se generan documentos al iniciar ni por request.
 El archivo generado se commitea como salida auditable y el build debe permitir
-detectar cualquier diferencia frente al artefacto versionado.
+detectar cualquier diferencia frente al artefacto versionado. La generación solo
+está activa en configuración `Release`; los builds en `Debug` no la ejecutan.
 
 **Pruebas**: xUnit con `WebApplicationFactory`/composición real cuando corresponda,
 `EndpointDataSource`, parsing JSON del documento y procesos CLI para Redocly/NSwag.
