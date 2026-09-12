@@ -73,7 +73,9 @@ builder.Services.AddOpenApi(options =>
                 }
 
                 var orderedOperations = operations
-                    .OrderBy(operation => operation.Key.ToString(), StringComparer.Ordinal)
+                    .OrderBy(
+                        operation => operation.Key.Method.ToLowerInvariant(),
+                        StringComparer.Ordinal)
                     .ToArray();
 
                 operations.Clear();
