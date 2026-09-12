@@ -20,6 +20,29 @@ function Assert-CommandAvailable {
     }
 }
 
+function ConvertTo-CanonicalJson {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    $canonicalizer = @'
+const fs = require('fs');
+const path = process.argv[1];
+const sort = (value) => Array.isArray(value)
+  ? value.map(sort)
+  : value !== null && typeof value === 'object'
+    ? Object.fromEntries(Object.keys(value).sort().map(key => [key, sort(value[key])]))
+    : value;
+fs.writeFileSync(path, JSON.stringify(sort(JSON.parse(fs.readFileSync(path, 'utf8'))), null, 2) + '\n', 'utf8');
+'@
+
+    & node -e $canonicalizer $Path
+    if ($LASTEXITCODE -ne 0) {
+        throw "❌ No se pudo canonizar el documento OpenAPI generado."
+    }
+}
+
 Push-Location $repoRoot
 try {
     Assert-CommandAvailable -Command 'dotnet' -Message '❌ Prerrequisito faltante: dotnet no está disponible en PATH.'
@@ -40,6 +63,7 @@ try {
     if (-not (Test-Path $outputPath)) {
         throw "❌ No se generó OpenAPI en: $outputPath"
     }
+    ConvertTo-CanonicalJson -Path $outputPath
     Write-Host "Documento OpenAPI generado"
 
     Write-Host "`n[2/4] Validando con Redocly..."
