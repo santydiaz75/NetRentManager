@@ -36,6 +36,10 @@ public class PropertiesListPageTests
             LastCall = (page, pageSize);
             return handler(page, pageSize);
         }
+
+        public Task<ApiResponse<PropertyDetailResponse>> GetPropertyByIdAsync(
+            string id, CancellationToken cancellationToken = default)
+            => throw new NotSupportedException();
     }
 
     [Fact]

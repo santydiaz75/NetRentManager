@@ -20,6 +20,8 @@
         <span class="badge">@Item.Price.ToString("C")</span>
         <span class="badge @StatusBadgeClass">@Item.Status</span>
     </div>
+
+    <NavLink class="btn btn-primary" href="@($"/properties/{Item.Id}")">Ver</NavLink>
 </article>
 
 @code {
