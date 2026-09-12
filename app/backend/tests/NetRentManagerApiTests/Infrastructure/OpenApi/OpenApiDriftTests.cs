@@ -47,6 +47,10 @@ public sealed class OpenApiDriftTests
     private static WebApplication CreateApplication()
     {
         var builder = WebApplication.CreateBuilder();
+        builder.Configuration["ConnectionStrings:DefaultConnection"] =
+            "Host=localhost;Port=5432;Database=netrentmanager_openapi_tests";
+        builder.Configuration["DatabaseCredentials:Username"] = "postgres";
+        builder.Configuration["DatabaseCredentials:Password"] = "postgres";
         builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
         var app = builder.Build();
         app.MapSliceEndpoints();

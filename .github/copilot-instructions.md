@@ -1,6 +1,6 @@
 <!-- SPECKIT START -->
 Para conocer las tecnologías, la estructura, los comandos y las decisiones de esta
-iniciativa, leer `specs/010-update-status/plan.md`.
+iniciativa, leer `specs/011-secret-manager-credentials/plan.md`.
 <!-- SPECKIT END -->
 
 # Instrucciones globales del proyecto

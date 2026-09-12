@@ -13,6 +13,9 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     WebRootPath = runtimeWebRoot
 });
 
+// Carga user secrets aunque el entorno no sea "Development" (ej. generación de OpenAPI en tiempo de build).
+builder.Configuration.AddUserSecrets<Program>(optional: true);
+
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer((document, _, _) =>

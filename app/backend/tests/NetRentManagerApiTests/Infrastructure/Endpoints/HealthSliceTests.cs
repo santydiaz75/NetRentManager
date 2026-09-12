@@ -11,7 +11,9 @@ public class HealthSliceTests
     {
         var builder = WebApplication.CreateBuilder();
         builder.Configuration["ConnectionStrings:DefaultConnection"] =
-            "Host=localhost;Port=5432;Database=netrentmanager_tests;Username=postgres;Password=postgres";
+            "Host=localhost;Port=5432;Database=netrentmanager_tests";
+        builder.Configuration["DatabaseCredentials:Username"] = "postgres";
+        builder.Configuration["DatabaseCredentials:Password"] = "postgres";
         builder.Services.AddInfrastructure(builder.Configuration, typeof(Program).Assembly);
 
         await using var app = builder.Build();
