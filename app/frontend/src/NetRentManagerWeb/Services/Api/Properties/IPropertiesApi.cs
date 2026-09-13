@@ -1,17 +1,19 @@
 using Refit;
+using NetRentManagerWeb.Features.Properties.Detail;
+using NetRentManagerWeb.Features.Properties.List;
 
 namespace NetRentManagerWeb.Services.Api.Properties;
 
 public interface IPropertiesApi
 {
     [Get("/api/properties")]
-    Task<ApiResponse<PagedPropertiesResponse>> GetPropertiesAsync(
-        int page,
-        int pageSize,
+    Task<PagedPropertyListResponse> GetPropertiesAsync(
+        [Query("Page")] int page,
+        [Query("PageSize")] int pageSize,
         CancellationToken cancellationToken = default);
-    
+
     [Get("/api/properties/{id}")]
-    Task<ApiResponse<PropertyDetailResponse>> GetPropertyByIdAsync(
+    Task<PropertyDetailResponse> GetPropertyByIdAsync(
         string id,
         CancellationToken cancellationToken = default);
 }

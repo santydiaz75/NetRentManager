@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using NetRentManagerWeb.Features.Properties.List;
 using NetRentManagerWeb.Services.Api.Properties;
 
 namespace NetRentManagerWeb.Components.Pages;
@@ -22,7 +23,7 @@ public partial class Home
 
     public bool HasError { get; private set; }
 
-    public PagedPropertiesResponse? Result { get; private set; }
+    public PagedPropertyListResponse? Result { get; private set; }
 
     protected override async Task OnInitializedAsync() => await LoadAsync();
 
@@ -35,9 +36,9 @@ public partial class Home
         try
         {
             var response = await PropertiesApi.GetPropertiesAsync(Page, PageSize);
-            if (response.IsSuccessful && response.Content is not null)
+            if (response is not null)
             {
-                Result = response.Content;
+                Result = response;
             }
             else
             {

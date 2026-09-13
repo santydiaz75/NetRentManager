@@ -1,0 +1,84 @@
+@using System.Globalization
+
+@if (state is PropertyDetailStateType.Loading)
+{
+    <PropertyDetailState State="PropertyDetailStateType.Loading" />
+}
+else if (state is PropertyDetailStateType.NotFound)
+{
+    <PropertyDetailState State="PropertyDetailStateType.NotFound">
+        <Actions>
+            <button class="btn btn-secondary" @onclick="BackToList">
+                <LucideIcon Name="arrow-left" Class="icon icon-md" />
+                Volver al listado
+            </button>
+        </Actions>
+    </PropertyDetailState>
+}
+else if (state is PropertyDetailStateType.Error)
+{
+    <PropertyDetailState State="PropertyDetailStateType.Error" Message="@errorMessage">
+        <Actions>
+            <button class="btn btn-primary" @onclick="ReloadAsync">Reintentar</button>
+            <button class="btn btn-secondary" @onclick="BackToList">
+                <LucideIcon Name="arrow-left" Class="icon icon-md" />
+                Volver al listado
+            </button>
+        </Actions>
+    </PropertyDetailState>
+}
+else if (detail is not null)
+{
+    <section class="page-header">
+        <div>
+            <h1 class="page-title">@detail.Title</h1>
+            <p class="page-subtitle">@detail.Address</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-secondary" @onclick="BackToList">
+                <LucideIcon Name="arrow-left" Class="icon icon-md" />
+                Volver al listado
+            </button>
+        </div>
+    </section>
+
+    <article class="card property-detail">
+        <div class="property-detail-media">
+            @if (detail.ImageUrl is not null)
+            {
+                <img src="@detail.ImageUrl" alt="@detail.Title" class="property-detail-image" />
+            }
+            else
+            {
+                <div class="property-detail-placeholder" role="img" aria-label="Imagen no disponible">
+                    <LucideIcon Name="image-off" Class="icon icon-lg" />
+                    <span>Imagen no disponible</span>
+                </div>
+            }
+        </div>
+
+        <div class="card-body property-detail-body">
+            <div class="property-detail-topline">
+                <span class="badge property-status">@detail.Status</span>
+                <span class="property-detail-price">@detail.Price.ToString("C0", CultureInfo.CurrentCulture)</span>
+            </div>
+
+            <p class="property-detail-description">@detail.Description</p>
+
+            <dl class="property-detail-metrics">
+                <div>
+                    <dt>Dormitorios</dt>
+                    <dd>@detail.BedroomCount</dd>
+                </div>
+                <div>
+                    <dt>Banos</dt>
+                    <dd>@detail.BathroomCount</dd>
+                </div>
+                <div>
+                    <dt>m2</dt>
+                    <dd>@detail.AreaSquareMeters.ToString("0.#", CultureInfo.CurrentCulture)</dd>
+                </div>
+            </dl>
+        </div>
+    </article>
+}

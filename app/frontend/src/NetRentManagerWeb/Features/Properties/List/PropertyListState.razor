@@ -1,0 +1,35 @@
+@if (State is PropertyListStateType.Loading)
+{
+    <section class="state-loading property-state">
+        <strong>Cargando propiedades</strong>
+        <p>Recuperando la pagina solicitada.</p>
+    </section>
+}
+else if (State is PropertyListStateType.Empty)
+{
+    <section class="state-empty property-state">
+        <strong>No hay propiedades para mostrar</strong>
+        <p>Prueba con otra pagina o espera a que haya resultados.</p>
+    </section>
+}
+else if (State is PropertyListStateType.Error)
+{
+    <section class="state-error property-state">
+        <strong>No se pudieron cargar las propiedades</strong>
+        <p>@Message</p>
+        @if (RetryContent is not null)
+        {
+            <div class="property-state-actions">
+                @RetryContent
+            </div>
+        }
+    </section>
+}
+
+@code {
+    [Parameter] public PropertyListStateType State { get; set; }
+
+    [Parameter] public string? Message { get; set; }
+
+    [Parameter] public RenderFragment? RetryContent { get; set; }
+}

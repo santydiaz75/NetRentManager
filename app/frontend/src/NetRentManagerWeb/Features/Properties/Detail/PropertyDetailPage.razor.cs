@@ -41,18 +41,7 @@ public partial class PropertyDetailPage
             }
 
             var response = await PropertiesApi.GetPropertyByIdAsync(propertyId.ToString());
-            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                HasNotFound = true;
-            }
-            else if (response.IsSuccessful && response.Content is not null)
-            {
-                Property = response.Content;
-            }
-            else
-            {
-                HasError = true;
-            }
+            Property = response;
         }
         catch (ApiException exception) when (exception.StatusCode == System.Net.HttpStatusCode.NotFound)
         {

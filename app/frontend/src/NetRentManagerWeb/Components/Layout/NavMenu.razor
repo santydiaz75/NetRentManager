@@ -1,11 +1,26 @@
-@* Navegación representativa de las secciones futuras del producto; sin lógica de negocio. *@
-<nav class="sidebar-nav">
-    <NavLink class="sidebar-link" ActiveClass="sidebar-link-active" href="/" Match="NavLinkMatch.All">
-        <LucideIcon Name="house" Class="icon icon-sm" />
-        <span class="sidebar-link-label">Inicio</span>
-    </NavLink>
-    <NavLink class="sidebar-link" ActiveClass="sidebar-link-active" href="/propiedades">
-        <LucideIcon Name="building-2" Class="icon icon-sm" />
-        <span class="sidebar-link-label">Propiedades</span>
+<script type="module" src="@Assets["Components/Layout/NavMenu.razor.js"]"></script>
+
+<div class="sidebar-brand">
+    <a class="sidebar-brand-link" href="">
+        <LucideIcon Name="building-2" Class="icon icon-lg" />
+        <span>NetRentManagerWeb</span>
+    </a>
+    <button id="sidebar-toggle"
+            class="sidebar-toggle"
+            type="button"
+            aria-label="Alternar navegacion"
+            aria-controls="sidebar-nav"
+            aria-expanded="false">
+        <LucideIcon Name="menu" Class="icon icon-md" />
+    </button>
+</div>
+
+<div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+
+<nav id="sidebar-nav" class="sidebar-nav" aria-label="Principal" aria-expanded="false">
+    <NavLink class="sidebar-link" ActiveClass="sidebar-link-active" href="" Match="NavLinkMatch.All">
+        <LucideIcon Name="building-2" Class="icon icon-md" />
+        <span>Propiedades</span>
     </NavLink>
 </nav>
+

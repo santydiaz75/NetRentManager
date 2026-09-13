@@ -1,0 +1,43 @@
+@using NetRentManagerWeb.Features.Properties.Detail
+
+@if (State is PropertyDetailStateType.Loading)
+{
+    <section class="state-loading property-state" aria-live="polite">
+        <strong>Cargando propiedad</strong>
+        <p>Recuperando el detalle solicitado.</p>
+    </section>
+}
+else if (State is PropertyDetailStateType.NotFound)
+{
+    <section class="state-empty property-state" aria-live="polite">
+        <strong>Propiedad no encontrada</strong>
+        <p>La propiedad solicitada no existe o ya no esta disponible.</p>
+        @if (Actions is not null)
+        {
+            <div class="property-state-actions">
+                @Actions
+            </div>
+        }
+    </section>
+}
+else if (State is PropertyDetailStateType.Error)
+{
+    <section class="state-error property-state" aria-live="polite">
+        <strong>No se pudo cargar el detalle</strong>
+        <p>@Message</p>
+        @if (Actions is not null)
+        {
+            <div class="property-state-actions">
+                @Actions
+            </div>
+        }
+    </section>
+}
+
+@code {
+    [Parameter] public PropertyDetailStateType State { get; set; }
+
+    [Parameter] public string? Message { get; set; }
+
+    [Parameter] public RenderFragment? Actions { get; set; }
+}

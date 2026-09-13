@@ -1,38 +1,44 @@
-@using NetRentManagerWeb.Services.Api.Properties
+@using System.Globalization
 
-@* Tarjeta individual de propiedad: título, precio, estado e imagen o marcador. *@
-<article class="card">
-    @if (!string.IsNullOrWhiteSpace(Item.ImageUrl))
+<article class="card property-card">
+    @if (property.ImageUrl is not null)
     {
-        <img src="@Item.ImageUrl" alt="@Item.Title" class="property-card-image" />
-    }
-    else
-    {
-        <div class="property-card-image property-card-image-placeholder" aria-hidden="true">
-            <LucideIcon Name="image-off" Class="icon icon-lg icon-muted" />
+        <div class="property-card-media">
+            <img src="@property.ImageUrl" alt="@property.Title" class="property-card-image" />
         </div>
     }
 
-    <h3 class="card-title">@Item.Title</h3>
-    <p class="card-subtitle">@Item.Address</p>
+    <div class="card-body property-card-body">
+        <div class="property-card-topline">
+            <h2 class="property-card-title">@property.Title</h2>
+            <span class="badge property-status">@property.Status</span>
+        </div>
 
-    <div class="page-actions">
-        <span class="badge">@Item.Price.ToString("C")</span>
-        <span class="badge @StatusBadgeClass">@Item.Status</span>
+        <div class="property-card-price">@property.Price.ToString("C0", CultureInfo.CurrentCulture)</div>
+        <p class="property-card-address">@property.Address</p>
+
+        <dl class="property-card-metrics">
+            <div>
+                <dt>Dormitorios</dt>
+                <dd>@property.BedroomCount</dd>
+            </div>
+            <div>
+                <dt>Baños</dt>
+                <dd>@property.BathroomCount</dd>
+            </div>
+            <div>
+                <dt>m²</dt>
+                <dd>@property.AreaSquareMeters.ToString("0.#", CultureInfo.CurrentCulture)</dd>
+            </div>
+        </dl>
+
+        <div class="property-card-actions">
+            <a class="btn btn-primary" href="@($"/properties/{property.Id}")">Ver</a>
+        </div>
     </div>
-
-    <NavLink class="btn btn-primary" href="@($"/properties/{Item.Id}")">Ver</NavLink>
 </article>
 
 @code {
-    [Parameter, EditorRequired]
-    public PropertyListItem Item { get; set; } = null!;
-
-    private string StatusBadgeClass => Item.Status switch
-    {
-        "Available" => "badge-success",
-        "Maintenance" => "badge-warning",
-        "Rented" => "badge-danger",
-        _ => string.Empty
-    };
+    [Parameter]
+    public PropertyListItem property { get; set; } = default!;
 }
