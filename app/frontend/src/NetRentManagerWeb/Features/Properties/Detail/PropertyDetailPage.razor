@@ -3,13 +3,15 @@
 
 <PageTitle>Detalle de propiedad</PageTitle>
 
-<div class="page-container property-detail">
+<div class="page-container">
     <header class="page-header">
         <div>
             <h1 class="page-title">Detalle de propiedad</h1>
             <p class="page-subtitle">Información pública de la propiedad seleccionada.</p>
         </div>
-        <a class="btn btn-secondary" href="/">Volver al listado</a>
+        <div class="page-actions">
+            <a class="btn btn-secondary" href="/">Volver al listado</a>
+        </div>
     </header>
 
     @if (IsLoading)
@@ -32,53 +34,57 @@
     }
     else if (Property is not null)
     {
-        <section class="detail-hero" aria-labelledby="property-title">
-            @if (!string.IsNullOrWhiteSpace(Property.ImageUrl))
-            {
-                <img src="@Property.ImageUrl" alt="@Property.Title" class="detail-hero-image" />
-            }
-            else
-            {
-                <div class="detail-hero-placeholder" aria-label="Imagen no disponible">
-                    <LucideIcon Name="image-off" Class="icon icon-lg icon-muted" />
-                </div>
-            }
-
-            <div class="card detail-content">
-                <h2 id="property-title" class="page-title">@Property.Title</h2>
-                <p class="card-subtitle">@Property.Address</p>
-                <div class="detail-summary">
-                    <span class="badge">@Property.Price.ToString("C")</span>
-                    <span class="badge @StatusBadgeClass">@Property.Status</span>
-                </div>
-                <p>@Property.Description</p>
+        <article class="card property-detail" aria-labelledby="property-title">
+            <div class="property-detail-media">
+                @if (!string.IsNullOrWhiteSpace(Property.ImageUrl))
+                {
+                    <img src="@Property.ImageUrl" alt="@Property.Title" class="property-detail-image" />
+                }
+                else
+                {
+                    <div class="property-detail-placeholder" role="img" aria-label="Imagen no disponible">
+                        <LucideIcon Name="image-off" Class="icon icon-lg icon-muted" />
+                        <span>Imagen no disponible</span>
+                    </div>
+                }
             </div>
-        </section>
 
-        <section class="card" aria-labelledby="property-data-title">
-            <h2 id="property-data-title" class="card-title">Datos de la propiedad</h2>
-            <dl class="detail-fields">
-                <div class="detail-field">
-                    <dt class="detail-field-label">Identificador</dt>
-                    <dd class="detail-field-value">@Property.Id</dd>
+            <div class="card-body property-detail-body">
+                <div>
+                    <h2 id="property-title" class="page-title">@Property.Title</h2>
+                    <p class="page-subtitle">@Property.Address</p>
                 </div>
-                <div class="detail-field">
-                    <dt class="detail-field-label">Dirección</dt>
-                    <dd class="detail-field-value">@Property.Address</dd>
+
+                <div class="property-detail-topline">
+                    <span class="badge @StatusBadgeClass">@Property.Status</span>
+                    <span class="property-detail-price">@Property.Price.ToString("C")</span>
                 </div>
-                <div class="detail-field">
-                    <dt class="detail-field-label">Dormitorios</dt>
-                    <dd class="detail-field-value">@Property.BedroomCount</dd>
-                </div>
-                <div class="detail-field">
-                    <dt class="detail-field-label">Baños</dt>
-                    <dd class="detail-field-value">@Property.BathroomCount</dd>
-                </div>
-                <div class="detail-field">
-                    <dt class="detail-field-label">Superficie</dt>
-                    <dd class="detail-field-value">@Property.AreaSquareMeters m²</dd>
-                </div>
-            </dl>
-        </section>
+
+                <p class="property-detail-description">@Property.Description</p>
+
+                <dl class="property-detail-metrics">
+                    <div>
+                        <dt>Identificador</dt>
+                        <dd>@Property.Id</dd>
+                    </div>
+                    <div>
+                        <dt>Dormitorios</dt>
+                        <dd>@Property.BedroomCount</dd>
+                    </div>
+                    <div>
+                        <dt>Baños</dt>
+                        <dd>@Property.BathroomCount</dd>
+                    </div>
+                    <div>
+                        <dt>Superficie</dt>
+                        <dd>@Property.AreaSquareMeters m²</dd>
+                    </div>
+                    <div>
+                        <dt>Dirección</dt>
+                        <dd>@Property.Address</dd>
+                    </div>
+                </dl>
+            </div>
+        </article>
     }
 </div>

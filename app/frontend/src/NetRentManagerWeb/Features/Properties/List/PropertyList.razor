@@ -1,0 +1,44 @@
+@using System.Globalization
+
+@if (isLoading && response is null)
+{
+    <PropertyListState State="PropertyListStateType.Loading" />
+}
+else if (errorMessage is not null)
+{
+    <PropertyListState State="PropertyListStateType.Error" Message="@errorMessage">
+        <RetryContent>
+            <button class="btn btn-primary" @onclick="ReloadAsync">Reintentar</button>
+        </RetryContent>
+    </PropertyListState>
+}
+else if (response is null || response.Items.Count == 0)
+{
+    <PropertyListState State="PropertyListStateType.Empty" />
+}
+else
+{
+    <section class="page-header">
+        <div>
+            <h1 class="page-title">Propiedades</h1>
+            <p class="page-subtitle">Explora el catalogo paginado desde la pagina principal.</p>
+        </div>
+        <div class="page-actions">
+            <span class="badge">Pagina @response.Page de @response.TotalPages</span>
+            <span class="badge">@response.TotalItems elementos</span>
+        </div>
+    </section>
+
+    <section class="properties-grid" aria-live="polite">
+        @foreach (var property in response.Items)
+        {
+            <PropertyCard property="property" />
+        }
+    </section>
+
+    <section class="pagination-bar" aria-label="Paginacion de propiedades">
+        <button class="btn btn-secondary" disabled="@(!CanGoPrevious)" @onclick="PreviousAsync">Anterior</button>
+        <span class="pagination-summary">Pagina @response.Page de @response.TotalPages</span>
+        <button class="btn btn-secondary" disabled="@(!CanGoNext)" @onclick="NextAsync">Siguiente</button>
+    </section>
+}

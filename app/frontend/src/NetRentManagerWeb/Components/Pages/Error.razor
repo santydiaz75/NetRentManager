@@ -3,40 +3,42 @@
 
 <PageTitle>Error</PageTitle>
 
-<div class="page-container">
-    <header class="page-header">
-        <div>
-            <h1 class="page-title">Error</h1>
-            <p class="page-subtitle">Ocurrió un error al procesar la solicitud.</p>
-        </div>
-    </header>
-
-    @if (ShowRequestId)
-    {
-        <p><strong>Request ID:</strong> <code>@RequestId</code></p>
-    }
-
-    <div class="card">
-        <p class="card-title">Modo de desarrollo</p>
-        <p class="card-subtitle">
-            Cambiar al entorno <strong>Development</strong> mostrará información más detallada sobre el error ocurrido.
-        </p>
-        <p>
-            <strong>El entorno Development no debe habilitarse en aplicaciones desplegadas.</strong>
-            Puede exponer información sensible de las excepciones a los usuarios finales.
-            Para depurar localmente, habilita el entorno <strong>Development</strong> configurando la variable
-            de entorno <strong>ASPNETCORE_ENVIRONMENT</strong> como <strong>Development</strong> y reinicia la aplicación.
-        </p>
+<section class="page-header">
+    <div>
+        <h1 class="page-title">Error de aplicacion</h1>
+        <p class="page-subtitle">Se produjo un error mientras se procesaba la solicitud.</p>
     </div>
-</div>
+</section>
+
+@if (ShowRequestId)
+{
+    <p class="state-empty">
+        <strong>Request ID:</strong> <code>@RequestId</code>
+    </p>
+}
+
+<section class="state-error">
+    <h3>Modo Development</h3>
+    <p>
+        Al usar el entorno <strong>Development</strong> se muestran detalles mas completos del error.
+    </p>
+    <p>
+        <strong>No habilitar Development en ambientes desplegados.</strong>
+        Para depuracion local, configure <strong>ASPNETCORE_ENVIRONMENT</strong> en <strong>Development</strong> y reinicie la app.
+    </p>
+</section>
 
 @code{
     [CascadingParameter]
     private HttpContext? HttpContext { get; set; }
 
-    private string? RequestId { get; set; }
+    [PersistentState]
+    public string? RequestId { get; set; }
+
     private bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-    protected override void OnInitialized() =>
-        RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+    protected override void OnInitialized()
+    {
+        RequestId ??= Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+    }
 }

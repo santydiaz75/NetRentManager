@@ -1,43 +1,31 @@
 using NetRentManagerWeb.Components.Pages;
+using NetRentManagerWeb.Features.Properties.List;
 using NetRentManagerWeb.Services.Api.Properties;
-using Refit;
 
 namespace NetRentManagerWeb;
 
 public class PropertiesListPageTests
 {
     private static PropertyListItem CreateItem(string title = "Casa")
-        => new(Guid.NewGuid(), title, "Descripción", "Dirección", 1000m, "Available", 2, 1, 60m, null);
-
-    private static ApiResponse<PagedPropertiesResponse> SuccessResponse(PagedPropertiesResponse content)
-        => new(
-            new HttpResponseMessage(System.Net.HttpStatusCode.OK) { RequestMessage = new HttpRequestMessage() },
-            content,
-            new RefitSettings());
-
-    private static ApiResponse<PagedPropertiesResponse> FailureResponse()
-        => new(
-            new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest) { RequestMessage = new HttpRequestMessage() },
-            null,
-            new RefitSettings());
+        => new(Guid.NewGuid(), title, null, 1000m, "Available", "Dirección", 2, 1, 60m);
 
     private sealed class StubPropertiesApi : IPropertiesApi
     {
-        private readonly Func<int, int, Task<ApiResponse<PagedPropertiesResponse>>> handler;
+        private readonly Func<int, int, Task<PagedPropertyListResponse>> handler;
 
-        public StubPropertiesApi(Func<int, int, Task<ApiResponse<PagedPropertiesResponse>>> handler)
+        public StubPropertiesApi(Func<int, int, Task<PagedPropertyListResponse>> handler)
             => this.handler = handler;
 
         public (int Page, int PageSize)? LastCall { get; private set; }
 
-        public Task<ApiResponse<PagedPropertiesResponse>> GetPropertiesAsync(
+        public Task<PagedPropertyListResponse> GetPropertiesAsync(
             int page, int pageSize, CancellationToken cancellationToken = default)
         {
             LastCall = (page, pageSize);
             return handler(page, pageSize);
         }
 
-        public Task<ApiResponse<PropertyDetailResponse>> GetPropertyByIdAsync(
+        public Task<PropertyDetailResponse> GetPropertyByIdAsync(
             string id, CancellationToken cancellationToken = default)
             => throw new NotSupportedException();
     }
@@ -45,7 +33,7 @@ public class PropertiesListPageTests
     [Fact]
     public async Task LoadAsync_UsesDefaultPageAndPageSize_WhenQueryMissing()
     {
-        var response = SuccessResponse(new PagedPropertiesResponse([CreateItem()], 1, 6, 1, 1, false, false));
+        var response = new PagedPropertyListResponse([CreateItem()], 1, 6, 1, 1, false, false);
         var api = new StubPropertiesApi((_, _) => Task.FromResult(response));
         var home = new Home { PropertiesApi = api };
 
@@ -59,7 +47,7 @@ public class PropertiesListPageTests
     [Fact]
     public async Task LoadAsync_ShowsEmptyState_WhenItemsAreEmpty()
     {
-        var response = SuccessResponse(new PagedPropertiesResponse([], 1, 6, 0, 0, false, false));
+        var response = new PagedPropertyListResponse([], 1, 6, 0, 0, false, false);
         var api = new StubPropertiesApi((_, _) => Task.FromResult(response));
         var home = new Home { PropertiesApi = api };
 
@@ -71,9 +59,9 @@ public class PropertiesListPageTests
     }
 
     [Fact]
-    public async Task LoadAsync_SetsHasError_WhenResponseIsNotSuccessful()
+    public async Task LoadAsync_SetsHasError_WhenResponseIsNull()
     {
-        var api = new StubPropertiesApi((_, _) => Task.FromResult(FailureResponse()));
+        var api = new StubPropertiesApi((_, _) => Task.FromResult((PagedPropertyListResponse?)null)!);
         var home = new Home { PropertiesApi = api };
 
         await home.LoadAsync();
@@ -96,7 +84,7 @@ public class PropertiesListPageTests
     [Fact]
     public async Task LoadAsync_TogglesIsLoading_BeforeAndAfterCompletion()
     {
-        var tcs = new TaskCompletionSource<ApiResponse<PagedPropertiesResponse>>();
+        var tcs = new TaskCompletionSource<PagedPropertyListResponse>();
         var api = new StubPropertiesApi((_, _) => tcs.Task);
         var home = new Home { PropertiesApi = api };
 
@@ -104,7 +92,7 @@ public class PropertiesListPageTests
 
         Assert.True(home.IsLoading);
 
-        tcs.SetResult(SuccessResponse(new PagedPropertiesResponse([CreateItem()], 1, 6, 1, 1, false, false)));
+        tcs.SetResult(new PagedPropertyListResponse([CreateItem()], 1, 6, 1, 1, false, false));
         await loadTask;
 
         Assert.False(home.IsLoading);

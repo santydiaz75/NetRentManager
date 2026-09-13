@@ -1,44 +1,8 @@
 ﻿@page "/"
-@using NetRentManagerWeb.Features.Properties.List
 @rendermode InteractiveServer
 
-<PageTitle>Inicio</PageTitle>
+@using NetRentManagerWeb.Features.Properties.List
 
-<div class="page-container">
-    <header class="page-header">
-        <div>
-            <h1 class="page-title">Propiedades</h1>
-            <p class="page-subtitle">Explora las propiedades disponibles.</p>
-        </div>
-    </header>
+<PageTitle>Propiedades</PageTitle>
 
-    @if (IsLoading)
-    {
-        <div class="state-loading">Cargando propiedades…</div>
-    }
-    else if (HasError)
-    {
-        <div class="state-error">No se pudo cargar el listado de propiedades. Intenta nuevamente más tarde.</div>
-    }
-    else if (Result is { Items.Count: 0 })
-    {
-        <div class="state-empty">No hay propiedades para mostrar.</div>
-    }
-    else if (Result is not null)
-    {
-        <div class="properties-grid">
-            @foreach (var item in Result.Items)
-            {
-                <PropertyCard Item="item" />
-            }
-        </div>
-
-        <PaginationControls
-            Page="Result.Page"
-            PageSize="Result.PageSize"
-            TotalPages="Result.TotalPages"
-            TotalItems="Result.TotalItems"
-            HasPrevious="Result.HasPrevious"
-            HasNext="Result.HasNext" />
-    }
-</div>
+<PropertyList />

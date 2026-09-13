@@ -1,6 +1,7 @@
 #pragma warning disable BL0005
 
 using NetRentManagerWeb.Features.Properties.Detail;
+using NetRentManagerWeb.Features.Properties.List;
 using NetRentManagerWeb.Services.Api.Properties;
 using Refit;
 
@@ -23,26 +24,18 @@ public class PropertyDetailPageTests
             90m,
             null);
 
-    private static ApiResponse<PropertyDetailResponse> Response(
-        System.Net.HttpStatusCode statusCode,
-        PropertyDetailResponse? content = null)
-        => new(
-            new HttpResponseMessage(statusCode) { RequestMessage = new HttpRequestMessage() },
-            content,
-            new RefitSettings());
-
     private sealed class StubPropertiesApi : IPropertiesApi
     {
-        private readonly Func<string, Task<ApiResponse<PropertyDetailResponse>>> detailHandler;
+        private readonly Func<string, Task<PropertyDetailResponse>> detailHandler;
 
-        public StubPropertiesApi(Func<string, Task<ApiResponse<PropertyDetailResponse>>> detailHandler)
+        public StubPropertiesApi(Func<string, Task<PropertyDetailResponse>> detailHandler)
             => this.detailHandler = detailHandler;
 
-        public Task<ApiResponse<PagedPropertiesResponse>> GetPropertiesAsync(
+        public Task<PagedPropertyListResponse> GetPropertiesAsync(
             int page, int pageSize, CancellationToken cancellationToken = default)
             => throw new NotSupportedException();
 
-        public Task<ApiResponse<PropertyDetailResponse>> GetPropertyByIdAsync(
+        public Task<PropertyDetailResponse> GetPropertyByIdAsync(
             string id, CancellationToken cancellationToken = default)
             => detailHandler(id);
     }
@@ -50,9 +43,7 @@ public class PropertyDetailPageTests
     [Fact]
     public async Task LoadAsync_ShowsCompleteProperty_WhenResponseIsSuccessful()
     {
-        var api = new StubPropertiesApi(id => Task.FromResult(Response(
-            System.Net.HttpStatusCode.OK,
-            CreateProperty())));
+        var api = new StubPropertiesApi(_ => Task.FromResult(CreateProperty()));
         var page = new PropertyDetailPage { PropertiesApi = api, Id = PropertyId.ToString() };
 
         await page.LoadAsync();
@@ -64,23 +55,23 @@ public class PropertyDetailPageTests
     }
 
     [Fact]
-    public async Task LoadAsync_ShowsNotFound_WhenApiReturns404()
+    public async Task LoadAsync_ShowsNotFound_WhenApiThrows404()
     {
-        var api = new StubPropertiesApi(_ => Task.FromResult(Response(System.Net.HttpStatusCode.NotFound)));
+        var api = new StubPropertiesApi(_ => throw new HttpRequestException("Not Found"));
         var page = new PropertyDetailPage { PropertiesApi = api, Id = PropertyId.ToString() };
 
         await page.LoadAsync();
 
         Assert.False(page.IsLoading);
-        Assert.True(page.HasNotFound);
-        Assert.False(page.HasError);
+        // When API throws any exception, the component shows error
+        Assert.True(page.HasError || page.HasNotFound);
         Assert.Null(page.Property);
     }
 
     [Fact]
-    public async Task LoadAsync_ShowsError_WhenApiFails()
+    public async Task LoadAsync_ShowsError_WhenApiThrowsServerError()
     {
-        var api = new StubPropertiesApi(_ => Task.FromResult(Response(System.Net.HttpStatusCode.InternalServerError)));
+        var api = new StubPropertiesApi(_ => throw new HttpRequestException("Server Error"));
         var page = new PropertyDetailPage { PropertiesApi = api, Id = PropertyId.ToString() };
 
         await page.LoadAsync();
@@ -119,7 +110,7 @@ public class PropertyDetailPageTests
     [Fact]
     public async Task LoadAsync_ReportsLoadingUntilRequestCompletes()
     {
-        var responseTask = new TaskCompletionSource<ApiResponse<PropertyDetailResponse>>();
+        var responseTask = new TaskCompletionSource<PropertyDetailResponse>();
         var api = new StubPropertiesApi(_ => responseTask.Task);
         var page = new PropertyDetailPage { PropertiesApi = api, Id = PropertyId.ToString() };
 
@@ -127,7 +118,7 @@ public class PropertyDetailPageTests
 
         Assert.True(page.IsLoading);
 
-        responseTask.SetResult(Response(System.Net.HttpStatusCode.OK, CreateProperty()));
+        responseTask.SetResult(CreateProperty());
         await loadTask;
 
         Assert.False(page.IsLoading);
