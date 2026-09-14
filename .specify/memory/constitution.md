@@ -1,28 +1,42 @@
 <!--
 Sync Impact Report
-- Version change: 1.1.0 -> 1.2.0 (MINOR: new principle + sections, no breaking changes)
-- Modified principles:
-  - II. Spec-Driven Development (No Negociable): agrega nota aclaratoria sobre
-    iniciativas retrospectivas y validación de implementación.
-- Added sections:
-  - VIII. Ingeniería Inversa y Documentación Retrospectiva (nuevo principio)
-  - Actualización de "Ciclo de estado de specs" para permitir cierre de iniciativas retrospectivas
-- Modified sections:
-  - "Método de Trabajo": Permite artefactos operativos adicionales (research.md, data-model.md, etc.)
-    generados por el flujo Speckit siempre que mantengan trazabilidad a tasks.md
-  - "Ciclo de estado de specs": Agrega regla de cierre para iniciativas retrospectivas
-- Removed sections:
-  - Ninguna
-- Templates requiring updates:
-  - ✅ revisado: .specify/templates/spec-template.md (compatible)
-  - ✅ revisado: .specify/templates/plan-template.md (compatible)
-  - ✅ revisado: .specify/templates/tasks-template.md (compatible)
-- Runtime guidance reviewed:
-  - ✅ revisado: .github/agents/speckit.implement.agent.md
-  - ✅ revisado: .github/agents/speckit.spec-status.before-implement.agent.md
-  - ✅ revisado: .github/agents/speckit.spec-status.after-implement.agent.md
-- Follow-up TODOs:
-  - Ninguno
+Version change: 1.2.0 -> 1.3.0 (MINOR: new principle IX, new subsections for interactive mode clarity)
+Modified principles:
+  VIII. Ingeniería Inversa y Documentación Retrospectiva: mantiene regla de evidencia verificable
+Added sections:
+  IX. Calidad, Alcance y Verificabilidad de las Especificaciones (nuevo principio)
+    - Requisito: Toda spec DEBE tener contenido funcional completo y observable
+    - Requisito: Separación estricta entre spec (qué) e implementación (cómo)
+    - Requisito: Requisitos observables y verificables, nunca subjetivos
+    - Requisito: Escenarios de aceptación estructurados (Dado/Cuando/Entonces)
+    - Requisito: Prohibición de inventar requisitos no respaldados
+    - Requisito: Control explícito de alcance (incluido, fuera, futuro)
+    - Requisito: Criterios de éxito concretos y verificables
+    - Requisito: Pre-approval quality gate (8-point checklist)
+  Visibilidad obligatoria del enunciado (subsección en Modo Interactivo)
+    - Requisito: Enunciado visible, completo, claro ANTES de opciones
+    - Requisito: Prohibición de preguntas implícitas
+    - Requisito: Formato con bolded "Pregunta:" y "Por qué importa:"
+    - Requisito: Verificación de componentes interactivos
+  Formato de pregunta Sí/No (subsección en Modo Interactivo)
+Modified sections:
+  "Modo Interactivo de Preguntas": Agrega delimitación de scope para speckit.specify (solo funcional, no técnico)
+  "Modo Interactivo de Preguntas": Agrega subsección "Visibilidad obligatoria del enunciado" con 4 subsecciones
+  "Formato de pregunta con opciones": Refuerza que enunciado DEBE aparecer antes de opciones
+  "Formato de pregunta Sí/No": Nuevo, con bolded labels y estructura consistente
+Removed sections:
+  Ninguna (todas las secciones previas se mantienen)
+Templates requiring updates:
+  ✅ revisado: .specify/templates/spec-template.md (compatible - nuevo Principio IX validado)
+  ✅ revisado: .specify/templates/plan-template.md (compatible)
+  ✅ revisado: .specify/templates/tasks-template.md (compatible)
+Runtime guidance reviewed:
+  ✅ revisado: .github/agents/speckit.specify.agent.md (scope delimiter implementado)
+  ✅ revisado: .github/agents/speckit.clarify.agent.md (compatible)
+  ✅ revisado: .github/agents/speckit.plan.agent.md (compatible)
+  ✅ revisado: .github/agents/speckit.implement.agent.md (compatible)
+Follow-up TODOs:
+  Ninguno. Todas las 6 modificaciones solicitadas se completaron y validaron exitosamente.
 -->
 
 # Constitución del Proyecto NetRentManager
