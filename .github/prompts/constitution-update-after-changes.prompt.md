@@ -1,0 +1,13 @@
+--PROMPT PARA ACTUALIZAR EL CONSTITUTION.MD
+
+/speckit.constitution Enmienda la constitución para habilitar iniciativas de ingeniería inversa y documentación retrospectiva, y para resolver el conflicto de "exactamente tres archivos" con los artefactos de speckit.plan. Mantén el idioma español y el estilo normativo existente (MUST/DEBE). Aplica exactamente estos cambios:
+
+1) Sección "Método de Trabajo": reemplaza la regla "Cada iniciativa DEBE contener exactamente tres archivos" por una que exija spec.md, plan.md y tasks.md como mínimos obligatorios, y permita explícitamente artefactos operativos adicionales generados por el flujo Speckit (research.md, data-model.md, quickstart.md, contracts/, checklists/) cuando aporten trazabilidad o evidencia, sin sustituir a los tres obligatorios.
+
+2) Nuevo principio en "Principios Fundamentales" titulado "Ingeniería Inversa y Documentación Retrospectiva": una iniciativa puede tener como entregable principal el análisis o documentación de un cambio ya presente en el repositorio en lugar de implementar funcionalidad nueva; DEBE declararse explícitamente como retrospectiva en el Input o Resumen del spec; está prohibido introducir comportamiento nuevo o modificar código de aplicación bajo pretexto de documentar; las conclusiones DEBEN basarse en evidencia verificable (diff de Git, compilación, pruebas automatizadas y validación manual cuando aplique); el spec.md DEBE incluir criterios de aceptación observables y el quickstart.md DEBE registrar la evidencia; las tareas DEBEN distinguir entre documentación/análisis y ejecución de verificación (build/test).
+
+3) Sección "Ciclo de estado de specs": agrega una regla de cierre que permita marcar como Implementada una iniciativa retrospectiva o de ingeniería inversa cuando su entregable documental está completo y su evidencia (build, test y/o validación manual) está registrada en quickstart.md, aunque no exista cambio de código de aplicación.
+
+4) Principio II (Spec-Driven): agrega una nota aclaratoria de que, para iniciativas retrospectivas, se conserva el flujo specify -> plan -> tasks -> implement, pero la fase de implementación consiste en producir y validar documentación, no en modificar código de aplicación.
+
+Incrementa la versión con bump MINOR (nuevos principios y secciones sin romper los existentes): de 1.1.0 a 1.2.0. Actualiza el Sync Impact Report al inicio del archivo y revisa la consistencia con plan-template.md, spec-template.md y tasks-template.md, marcando cada uno como actualizado o pendiente. Actualiza LAST_AMENDED_DATE a 2026-07-24 y conserva RATIFICATION_DATE.
