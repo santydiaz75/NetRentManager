@@ -68,12 +68,12 @@
 
 ## Fase 5: Validación y evidencia final
 
-**Propósito**: Completar la evidencia documental del hotfix y dejar pendiente la verificación manual del navegador si no se ha ejecutado.
+**Propósito**: Completar la evidencia documental del hotfix y registrar validación manual del navegador.
 
-- [ ] T013 [P] Ejecutar `dotnet test app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj --nologo` y registrar el resultado para confirmar la regresión del hotfix en la suite actual del frontend.
-- [ ] T014 [P] Validar manualmente en el navegador que `/properties/{id}` abre el detalle correctamente, el encabezado mantiene el acceso de retorno y la navegación principal muestra el icono correcto.
-- [ ] T015 Crear o actualizar `specs/016-property-detail-hotfix/quickstart.md` con la evidencia de pruebas y validación manual para cerrar la trazabilidad documental del hotfix.
-- [ ] T016 Revisar `specs/016-property-detail-hotfix/checklists/requirements.md` y confirmar que cada requisito queda cubierto por la evidencia disponible y por las verificaciones pendientes.
+- [ ] T013 [P] Ejecutar `dotnet test app/frontend/test/NetRentManagerWeb/NetRentManagerWeb.csproj --nologo --verbosity minimal` desde la raíz del repositorio; capturar salida completa (timestamp, número de tests, resultado de paso/fallo) y registrar en `specs/016-property-detail-hotfix/quickstart.md` sección "Resultados de Ejecución T013".
+- [ ] T014 [P] Validar manualmente en navegador: (1) abrir URL válida `/properties/{id}`, (2) verificar que se muestra única pantalla de detalle sin error ambiguo, (3) confirmar que encabezado con botón "Volver" permanece arriba, (4) inspeccionar que imagen y contenido del inmueble están en bloque principal separado, (5) navegar a propiedad sin imagen y comprobar marcador visual estable, (6) revisar que icono en navegación principal es válido. Registrar estado (✓/✗) de cada punto en tabla de checklist dentro de `specs/016-property-detail-hotfix/quickstart.md` sección "T014: Validación manual en navegador".
+- [ ] T015 Consolidar evidencia: verificar que `specs/016-property-detail-hotfix/quickstart.md` contiene todos los registros de T013-T014 y que cada requisito funcional (FR-001 a FR-008) y criterio de éxito (SC-001 a SC-004) tiene al menos una referencia trazable a tareas completadas o evidencia disponible en quickstart.md. Completar cualquier hueco de trazabilidad faltante.
+- [ ] T016 Validar cobertura de requirements: revisar `specs/016-property-detail-hotfix/checklists/requirements.md` y confirmar que cada requisito listado tiene cobertura documentada en `spec.md`, `plan.md`, `tasks.md` y `quickstart.md`. Marcar como verificada la línea de cobertura para cada requisito. Si algún requisito carece de evidencia, escalarlo en los comentarios de esta tarea.
 
 ## Dependencias de validación
 
