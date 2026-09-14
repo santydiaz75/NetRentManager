@@ -1,22 +1,26 @@
 <!--
 Sync Impact Report
-- Version change: 1.0.0 -> 1.1.0
+- Version change: 1.1.0 -> 1.2.0 (MINOR: new principle + sections, no breaking changes)
 - Modified principles:
-  - II. Spec-Driven Development (No Negociable): incorpora estados canónicos y
-    transiciones automáticas como parte del flujo obligatorio.
+  - II. Spec-Driven Development (No Negociable): agrega nota aclaratoria sobre
+    iniciativas retrospectivas y validación de implementación.
 - Added sections:
-  - Ciclo de estado de specs
+  - VIII. Ingeniería Inversa y Documentación Retrospectiva (nuevo principio)
+  - Actualización de "Ciclo de estado de specs" para permitir cierre de iniciativas retrospectivas
+- Modified sections:
+  - "Método de Trabajo": Permite artefactos operativos adicionales (research.md, data-model.md, etc.)
+    generados por el flujo Speckit siempre que mantengan trazabilidad a tasks.md
+  - "Ciclo de estado de specs": Agrega regla de cierre para iniciativas retrospectivas
 - Removed sections:
   - Ninguna
 - Templates requiring updates:
-  - ✅ actualizado: .specify/templates/spec-template.md
-  - ✅ actualizado: .specify/templates/plan-template.md
-  - ✅ actualizado: .specify/templates/tasks-template.md
-  - ⚠ revisión manual pendiente: .specify/templates/commands/*.md (directorio ausente)
+  - ✅ revisado: .specify/templates/spec-template.md (compatible)
+  - ✅ revisado: .specify/templates/plan-template.md (compatible)
+  - ✅ revisado: .specify/templates/tasks-template.md (compatible)
 - Runtime guidance reviewed:
-  - ✅ actualizado: .github/agents/speckit.implement.agent.md
-  - ✅ revisados: .github/agents/speckit.spec-status.before-implement.agent.md
-    y .github/agents/speckit.spec-status.after-implement.agent.md
+  - ✅ revisado: .github/agents/speckit.implement.agent.md
+  - ✅ revisado: .github/agents/speckit.spec-status.before-implement.agent.md
+  - ✅ revisado: .github/agents/speckit.spec-status.after-implement.agent.md
 - Follow-up TODOs:
   - Ninguno
 -->
@@ -44,6 +48,8 @@ Para specs fundacionales o de alto impacto se recomienda:
 speckit.specify -> speckit.clarify -> speckit.plan -> speckit.analyze -> speckit.tasks -> speckit.implement
 
 Ninguna fase obligatoria puede saltarse.
+
+**Nota sobre iniciativas retrospectivas**: Para iniciativas cuyo entregable principal sea el análisis o documentación de cambios ya presentes en el repositorio (ingeniería inversa), se conserva el flujo completo specify -> plan -> tasks -> implement, pero la fase de implementación consiste en producir y validar documentación, no en modificar código de aplicación. La validación DEBE registrarse en quickstart.md con evidencia verificable (diff de Git, compilación, pruebas automatizadas, validación manual).
 
 ### III. Arquitectura Canónica de Backend y Frontend
 El backend DEBE organizarse por features y casos de uso con Vertical Slice Architecture.
@@ -91,6 +97,23 @@ Si existe divergencia entre convenciones locales y comportamiento operativo upst
 
 Toda divergencia se resuelve por enmienda explícita de esta constitución, no por edición silenciosa de scripts ni por reubicación unilateral de archivos.
 
+### VIII. Ingeniería Inversa y Documentación Retrospectiva
+Una iniciativa PUEDE tener como entregable principal el análisis o documentación de un cambio ya presente en el repositorio, en lugar de implementar funcionalidad nueva.
+
+Requisitos obligatorios para iniciativas retrospectivas:
+
+1. **Declaración explícita**: El spec.md DEBE declarar claramente en su sección Input o Resumen que la iniciativa es retrospectiva y cuál es su objetivo documental.
+
+2. **Prohibición de comportamiento nuevo**: Está prohibido introducir cambios de comportamiento en la aplicación o modificar código bajo pretexto de documentar. Cualquier cambio DEBE trazarse a una tarea explícita en tasks.md.
+
+3. **Evidencia verificable**: Las conclusiones DEBEN basarse en evidencia verificable: diff de Git, compilación exitosa, ejecución de pruebas automatizadas y validación manual cuando aplique.
+
+4. **Criterios de aceptación observables**: El spec.md DEBE incluir criterios de aceptación para la documentación producida (por ejemplo: "Completitud de la cobertura de APIs", "Captura de decisiones de arquitectura", "Mapeo de dependencias de módulos").
+
+5. **Registro de evidencia**: El quickstart.md DEBE registrar la evidencia de validación (comandos ejecutados, resultados de pruebas, capturas de compilación, notas de validación manual).
+
+6. **Distinción en tasks.md**: Las tareas DEBEN distinguir explícitamente entre actividades de documentación/análisis y actividades de ejecución/verificación (build, test, validación manual).
+
 ---
 
 ## Estructura del Repositorio
@@ -109,17 +132,26 @@ La carpeta .specify se reserva para infraestructura operativa de spec-kit.
 
 ## Método de Trabajo
 
-Cada iniciativa DEBE contener exactamente tres artefactos canónicos de ejecución:
+Cada iniciativa DEBE contener como mínimos obligatorios tres artefactos canónicos de ejecución:
 
 - spec.md
 - plan.md
 - tasks.md
 
-Una iniciativa PUEDE contener artefactos auxiliares trazables, como
-`research.md`, `data-model.md`, `quickstart.md`, contratos y checklists, siempre
-que permanezcan dentro de la carpeta de la iniciativa, no sustituyan a los tres
-artefactos canónicos y cada cambio de código o documentación quede asociado a
-una tarea de `tasks.md`.
+Una iniciativa PUEDE contener artefactos operativos adicionales generados por el flujo Speckit, tales como:
+
+- research.md
+- data-model.md
+- quickstart.md
+- contracts/ (directorio con especificaciones de contrato)
+- checklists/ (directorio con listas de verificación)
+
+Estos artefactos adicionales DEBEN cumplir con estos requisitos:
+
+1. Aportar trazabilidad verificable o evidencia de validación.
+2. No sustituir a los tres artefactos canónicos.
+3. Mantener cada cambio de código o documentación asociado a una tarea específica en tasks.md.
+4. Residir dentro de la carpeta de la iniciativa correspondiente.
 
 Antes de implementar:
 
@@ -156,6 +188,18 @@ Está prohibido marcar una spec como `Implementada` si existe al menos una tarea
 sin completar en `tasks.md` o si `quickstart.md` no contiene evidencia de
 validación. Si falla cualquiera de estas condiciones, el estado DEBE permanecer
 en `En implementación` y el flujo DEBE reportar la causa explícita del bloqueo.
+
+**Regla adicional para iniciativas retrospectivas**: Una iniciativa retrospectiva o
+de ingeniería inversa PUEDE marcarse como `Implementada` cuando:
+
+1. Su entregable documental (spec.md, plan.md, research.md, data-model.md, quickstart.md,
+   contratos, etc.) está completo y cumple los criterios de aceptación declarados en spec.md.
+2. Su evidencia de validación (build exitosa, pruebas automatizadas, validación manual)
+   está registrada en quickstart.md con referencias verificables (commits, logs, capturas).
+3. Todas las tareas en tasks.md están marcadas como completadas [X].
+
+Aunque una iniciativa retrospectiva no introduzca cambios de código de aplicación,
+el cumplimiento de estos tres puntos permite el cierre a estado `Implementada`.
 
 Cada cambio de estado DEBE dejar trazabilidad con estado origen, estado destino,
 motivo y fecha ISO `YYYY-MM-DD`. Una transición inválida DEBE bloquearse sin
@@ -260,4 +304,4 @@ La única resolución legítima es la decisión humana documentada vía enmienda
 
 
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-04 | **Last Amended**: 2026-09-10
+**Version**: 1.2.0 | **Ratified**: 2026-07-04 | **Last Amended**: 2026-07-24
